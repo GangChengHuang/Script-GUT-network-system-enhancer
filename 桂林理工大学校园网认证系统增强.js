@@ -99,6 +99,7 @@
 	}
 
 	var fixbackground = false;
+	var addBtReLogin = false;
 	function fixLoggedLayout() {
 		var btLogged = document.querySelector(
 			"#edit_body > div:nth-child(2) > div.edit_loginBox.ui-resizable-autohide > form > input"
@@ -106,9 +107,32 @@
 		var imglogo = document.querySelector(
 			"#edit_body > div:nth-child(1) > div > a > img"
 		);
-		var topvlaue = page.kind == "pc" ? "158px" : "178px";
-		if (btLogged && btLogged.style.top != topvlaue)
-			btLogged.style.top = topvlaue;
+		var topvlaue = page.kind == "pc_1" ? "168px" : "178px";
+		var leftvlaue = page.kind == "pc_1" ? "55px" : "85px";
+		var newbtleftvlaue = page.kind == "pc_1" ? "255px" : "365px";
+		if (btLogged) {
+			if (btLogged.style.top != topvlaue) {
+				btLogged.style.top = topvlaue;
+				btLogged.style.left = leftvlaue;
+			}
+			if (btLogged.value == "注  销" && !addBtReLogin) {
+				var newbtrelogin = document.createElement("input");
+				newbtrelogin.class = "edit_lobo_cell";
+				newbtrelogin.name = "relogin";
+				newbtrelogin.type = "button";
+				newbtrelogin.onclick = autoCheckLogin;
+				newbtrelogin.value = "重新认证";
+				newbtrelogin.style.cssText = btLogged.style.cssText;
+				newbtrelogin.style.left = newbtleftvlaue;
+				document
+					.querySelector(
+						"#edit_body > div:nth-child(2) > div.edit_loginBox.ui-resizable-autohide > form"
+					)
+					.appendChild(newbtrelogin);
+				addBtReLogin = true;
+			}
+		}
+
 		var info = document.querySelector(
 			"#edit_body > div:nth-child(2) > div.edit_loginBox.ui-resizable-autohide > form > div"
 		);
@@ -116,7 +140,8 @@
 		var bordbg = document.querySelector(
 			"#edit_body > div:nth-child(2) > div.edit_loginBox.ui-resizable-autohide > form"
 		);
-        if (bordbg && bordbg.style.backgroundColor != "rgb(255, 255, 255)") bordbg.style.backgroundColor = "rgb(255, 255, 255)";
+		if (bordbg && bordbg.style.backgroundColor != "rgb(255, 255, 255)")
+			bordbg.style.backgroundColor = "rgb(255, 255, 255)";
 		if (!fixbackground) {
 			document.querySelector(
 				"body"
@@ -126,7 +151,7 @@
 		}
 	}
 
-	function autoCheckLogin() {
+	autoCheckLogin = function () {
 		for (i = 0; i < youruids.length; i++) {
 			if (youruids[i] == "你的账号") {
 				_alert(lang("首次使用请在油猴-脚本中填写账号信息！"));
@@ -138,7 +163,7 @@
 				break;
 			}
 		}
-	}
+	};
 
 	checkAcc = function (account) {
 		util._jsonp({
@@ -202,12 +227,12 @@
 			DDDDD: account,
 			upass: upass,
 			"0MKKey": 123456,
-			R1: f0.R1 ? f0.R1.value : "",
-			R2: page.en_md5 ? 1 : "",
+			R1: 0,
+			R2: "",
 			R3: type,
-			R6: f0.R6 ? f0.R6.value : 0,
-			para: f0.para ? f0.para.value : "",
-			v6ip: f0.v6ip ? f0.v6ip.value : "",
+			R6: 1,
+			para: "00",
+			v6ip: "",
 		};
 		data.terminal_type = term.type;
 		data.lang = language.lang.toLowerCase();
