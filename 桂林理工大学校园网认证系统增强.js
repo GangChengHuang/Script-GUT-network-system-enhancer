@@ -268,6 +268,16 @@
 		}
 	}
 
+	function fixLayout() {
+		var title = document.querySelector(
+			"#edit_body > div:nth-child(2) > div.edit_cell.edit_prog.ui-resizable-autohide > p"
+		);
+		if (title) {
+			title.style.color = "rgb(255,0,0)";
+			title.innerHTML = "上网认证系统(增强💪)";
+		}
+	}
+
 	function pageMutation() {
 		var targetNode = document.getElementsByTagName("head")[0];
 		var config = { attributes: true, childList: true, subtree: true };
@@ -275,6 +285,7 @@
 			mutationsList.forEach(function (item, index) {
 				checkPageTitle();
 				replaceLink();
+                fixLayout();
 			});
 		};
 		var observer = new MutationObserver(callback);
@@ -282,3 +293,4 @@
 	}
 	pageMutation();
 })();
+
