@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         桂林理工大学校园网认证系统增强
 // @namespace    https://github.com/GangChengHuang
-// @version      1.1
+// @version      1.2
 // @description  桂林理工大学校园网认证信息不够全面，故开发此插件！自动认证，界面美化，屏蔽学校官网转跳，多账号自动认证，显示全面的认证信息。
 // @author       Peterg
 // @match        http://172.16.2.2/*
@@ -151,35 +151,39 @@
 		}
 	}
 
-	autoCheckLogin = function () {
-		for (i = 0; i < youruids.length; i++) {
-			if (youruids[i] == "你的账号") {
-				_alert(lang("首次使用请在油猴-脚本中填写账号信息！"));
-				break;
-			}
-			if (!checkAcc(youruids[i])) {
-				_alert(lang("正在登录：" + youruids[i]));
-				autoPortalLogin(youruids[i], yourpwds[i], yourtypes[i]);
-				break;
-			}
-		}
-	};
+	function autoCheckLogin() {
+		var index = 0;
+		loop(index);
+	}
 
-	checkAcc = function (account) {
-		util._jsonp({
-			url: page.portal_api + "mac/find?user_account=" + account,
-			success: function (succObj) {
-				if (succObj.result == 0) {
-					return false;
-				} else if (succObj.result == 1) {
-					return true;
-				}
-			},
-			error: function (error) {
-				_alert(lang("获取MAC异常，请重试！"));
-			},
-		});
-	};
+	function loop(index) {
+		if (index < youruids.length) {
+			if (youruids[index] == "你的账号") {
+				_alert(lang("首次使用请在油猴-脚本中填写账号信息！"));
+			} else {
+				util._jsonp({
+					url:
+						page.portal_api +
+						"mac/find?user_account=" +
+						youruids[index],
+					success: function (succObj) {
+						if (succObj.result == 0) {
+							_alert(lang("正在登录：" + youruids[index]));
+							autoPortalLogin(
+								youruids[index],
+								yourpwds[index],
+								yourtypes[index]
+							);
+						} else {
+							loop(++index);
+						}
+					},
+				});
+			}
+		} else {
+			_alert(lang("该账号已认证，请注销后重试！"));
+		}
+	}
 
 	var fixrdys = false;
 	function fixLoginLayout() {
@@ -285,7 +289,7 @@
 			mutationsList.forEach(function (item, index) {
 				checkPageTitle();
 				replaceLink();
-                fixLayout();
+				fixLayout();
 			});
 		};
 		var observer = new MutationObserver(callback);
@@ -293,4 +297,3 @@
 	}
 	pageMutation();
 })();
-
