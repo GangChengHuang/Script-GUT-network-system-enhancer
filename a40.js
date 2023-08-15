@@ -3,6 +3,7 @@ function safe_add(x, y) {
     var msw = (x >> 16) + (y >> 16) + (lsw >> 16);
     return (msw << 16) | (lsw & 0xffff);
 }
+
 function rol(num, cnt) {
     return (num << cnt) | (num >>> (32 - cnt));
 }
@@ -809,7 +810,7 @@ var CALG = "12345678";
 function _confirm(msg, yesFunc, cancelFunc) {
     layer.confirm(
         msg,
-        { btn: [lang("È·¶¨"), lang("È¡Ïû")], title: lang("ÌáÊ¾") },
+        { btn: [lang("ç¡®å®š"), lang("å–æ¶ˆ")], title: lang("æç¤º") },
         function (index, layero) {
             yesFunc && yesFunc();
             layer.close(index);
@@ -818,7 +819,7 @@ function _confirm(msg, yesFunc, cancelFunc) {
     );
 }
 function _alert(msg) {
-    layer.alert(msg, { btn: [lang("È·¶¨")], title: lang("ÌáÊ¾") });
+    layer.alert(msg, { btn: [lang("ç¡®å®š")], title: lang("æç¤º") });
 }
 function ee(form_id) {
     var form;
@@ -832,11 +833,11 @@ function ee(form_id) {
         form = window.f4;
     } else if (form_id == 5) {
         if (!util.isValidMobile(f5.DDDDD.value)) {
-            _alert(lang("ÊÖ»úºÅ²»ºÏ·¨£¬ÇëÖØĞÂÌîĞ´£¡"));
+            _alert(lang("æ‰‹æœºå·ä¸åˆæ³•ï¼Œè¯·é‡æ–°å¡«å†™ï¼"));
             return false;
         }
         if (f5.upass.value.length == 0) {
-            _alert(lang("ÃÜÂë²»ÄÜÎª¿Õ£¡"));
+            _alert(lang("å¯†ç ä¸èƒ½ä¸ºç©ºï¼"));
             return false;
         }
         page.com_username = f5.DDDDD.value + login.getTempAccountSuffix();
@@ -851,14 +852,14 @@ function ee(form_id) {
         wechatLogin.callWechatBrowser();
         return false;
     } else {
-        _alert(lang("Ã»ÓĞÈÎºÎÌá½»"));
+        _alert(lang("æ²¡æœ‰ä»»ä½•æäº¤"));
         return false;
     }
     if (
         $(form).find("[name=C1]").length > 0 &&
         !$(form).find("[name=C1]")[0].checked
     ) {
-        _alert(lang("ÇëÔÄ¶Á²¢Í¬Òâ¡¶ÃâÔğÉùÃ÷¡·"));
+        _alert(lang("è¯·é˜…è¯»å¹¶åŒæ„ã€Šå…è´£å£°æ˜ã€‹"));
         return false;
     }
     var btn_login = $(form).find("input[name=0MKKey]");
@@ -925,11 +926,11 @@ function ee(form_id) {
 }
 function wc() {
     if (unBindMac == 1 && (registerMode == 1 || registerMode == 4)) {
-        _confirm(lang("È·¶¨×¢Ïú²¢½â°óMac?"), function () {
+        _confirm(lang("ç¡®å®šæ³¨é”€å¹¶è§£ç»‘Mac?"), function () {
             user.unbind_mac("", "", 1);
         });
     } else {
-        _confirm(lang("È·¶¨×¢Ïú?"), function () {
+        _confirm(lang("ç¡®å®šæ³¨é”€?"), function () {
             logout.init();
             return true;
         });
@@ -963,7 +964,7 @@ var autoLogin = {
                         "checked"
                     );
                 }
-                window.document.title = lang("×Ô¶¯µÇÂ¼ÖĞ...");
+                window.document.title = lang("è‡ªåŠ¨ç™»å½•ä¸­...");
                 setTimeout(function () {
                     login.init(form);
                 }, time);
@@ -1143,7 +1144,7 @@ function DispTFM(sele) {
                 '<div style="width:' +
                 div_width +
                 'px;text-align:right; display:inline-block;">' +
-                lang("ÒÑÓÃÊ±¼ä") +
+                lang("å·²ç”¨æ—¶é—´") +
                 ' : </div><div style="width:' +
                 div_width +
                 'px;text-align:left;display:inline-block;">' +
@@ -1155,7 +1156,7 @@ function DispTFM(sele) {
                 '<div style="width:' +
                 div_width +
                 'px;text-align:right; display:inline-block;">' +
-                lang("ÒÑÓÃÁ÷Á¿") +
+                lang("å·²ç”¨æµé‡") +
                 ' : </div><div style="width:' +
                 div_width +
                 'px;text-align:left;display:inline-block;">' +
@@ -1170,7 +1171,7 @@ function DispTFM(sele) {
                     '<div style="width:' +
                     div_width +
                     'px;text-align:right; display:inline-block;">' +
-                    lang("Óà¶î") +
+                    lang("ä½™é¢") +
                     ' : </div><div style="width:' +
                     div_width +
                     'px;text-align:left;display:inline-block;">RMB ' +
@@ -1183,7 +1184,7 @@ function DispTFM(sele) {
                     '<div style="width:' +
                     div_width +
                     'px;text-align:right; display:inline-block;">' +
-                    lang("ÍâÍøÓ³Éä") +
+                    lang("å¤–ç½‘æ˜ å°„") +
                     ' : </div><div style="width:' +
                     div_width +
                     'px;text-align:left;display:inline-block;">' +
@@ -1261,15 +1262,15 @@ var error = {
     },
     default_login_err: function () {
         var me = this;
-        var UT = lang("ÒÑÓÃÊ±¼ä") + me.localErr.time + " Min<br/>";
+        var UT = lang("å·²ç”¨æ—¶é—´") + me.localErr.time + " Min<br/>";
         var UF =
-            lang("ÒÑÓÃÁ÷Á¿") +
+            lang("å·²ç”¨æµé‡") +
             me.localErr.flow1 / 1024 +
             me.localErr.flow3 +
             me.localErr.flow0 / 1024 +
             " MByte<br/>";
         if (me.localErr.fsele == 1)
-            var UM = lang("Óà¶î") + "RMB" + localErr.fee1 / 10000;
+            var UM = lang("ä½™é¢") + "RMB" + localErr.fee1 / 10000;
         UM = "";
         switch (parseInt(me.localErr.msg)) {
             case 0:
@@ -1277,19 +1278,19 @@ var error = {
                 switch (me.localErr.msga) {
                     case null:
                     case "":
-                        me.errorMsg = lang("ÕËºÅ»òÃÜÂë²»¶Ô£¬ÇëÖØĞÂÊäÈë");
+                        me.errorMsg = lang("è´¦å·æˆ–å¯†ç ä¸å¯¹ï¼Œè¯·é‡æ–°è¾“å…¥");
                         break;
                     case "error0":
-                        me.errorMsg = lang("±¾IP²»ÔÊĞíWeb·½Ê½µÇÂ¼");
+                        me.errorMsg = lang("æœ¬IPä¸å…è®¸Webæ–¹å¼ç™»å½•");
                         break;
                     case "error1":
-                        me.errorMsg = lang("±¾ÕËºÅ²»ÔÊĞíWeb·½Ê½µÇÂ¼");
+                        me.errorMsg = lang("æœ¬è´¦å·ä¸å…è®¸Webæ–¹å¼ç™»å½•");
                         break;
                     case "error2":
-                        me.errorMsg = lang("±¾ÕËºÅ²»ÔÊĞíĞŞ¸ÄÃÜÂë");
+                        me.errorMsg = lang("æœ¬è´¦å·ä¸å…è®¸ä¿®æ”¹å¯†ç ");
                         break;
-                    case "[01], ±¾ÕÊºÅÖ»ÄÜÔÚÖ¸¶¨VLANIDÊ¹ÓÃ(0." + cvlanid + ")":
-                        me.errorMsg = lang("ÓÃ»§Ê×´ÎµÇÂ¼ĞèÇ¿ÖÆĞŞ¸ÄÃÜÂë");
+                    case "[01], æœ¬å¸å·åªèƒ½åœ¨æŒ‡å®šVLANIDä½¿ç”¨(0." + cvlanid + ")":
+                        me.errorMsg = lang("ç”¨æˆ·é¦–æ¬¡ç™»å½•éœ€å¼ºåˆ¶ä¿®æ”¹å¯†ç ");
                         changePass();
                         break;
                     default:
@@ -1299,7 +1300,7 @@ var error = {
                 break;
             case 2:
                 me.errorMsg =
-                    lang("¸ÃÕËºÅÕıÔÚÊ¹ÓÃÖĞ£¬ÇëÄúÓëÍø¹ÜÁªÏµ") +
+                    lang("è¯¥è´¦å·æ­£åœ¨ä½¿ç”¨ä¸­ï¼Œè¯·æ‚¨ä¸ç½‘ç®¡è”ç³»") +
                     "<br/>" +
                     lcoalErr.xip +
                     "<br/>" +
@@ -1307,48 +1308,48 @@ var error = {
                 break;
             case 3:
                 me.errorMsg =
-                    lang("±¾ÕËºÅÖ»ÄÜÔÚÖ¸¶¨µØÖ·Ê¹ÓÃ") + "</br>" + lcoalErr.xip;
+                    lang("æœ¬è´¦å·åªèƒ½åœ¨æŒ‡å®šåœ°å€ä½¿ç”¨") + "</br>" + lcoalErr.xip;
                 break;
             case 4:
-                me.errorMsg = lang("±¾ÕËºÅ·ÑÓÃ³¬Ö§»òÊ±³¤Á÷Á¿³¬¹ıÏŞÖÆ");
+                me.errorMsg = lang("æœ¬è´¦å·è´¹ç”¨è¶…æ”¯æˆ–æ—¶é•¿æµé‡è¶…è¿‡é™åˆ¶");
                 break;
             case 5:
-                me.errorMsg = lang("±¾ÕËºÅÔİÍ£Ê¹ÓÃ");
+                me.errorMsg = lang("æœ¬è´¦å·æš‚åœä½¿ç”¨");
                 break;
             case 6:
-                me.errorMsg = lang("ÏµÍ³»º´æÌ«Âú");
+                me.errorMsg = lang("ç³»ç»Ÿç¼“å­˜å¤ªæ»¡");
                 break;
             case 7:
                 me.errorMsg = UT + UF + UM;
                 break;
             case 8:
-                me.errorMsg = lang("±¾ÕËºÅÕıÔÚÊ¹ÓÃ,²»ÄÜĞŞ¸Ä");
+                me.errorMsg = lang("æœ¬è´¦å·æ­£åœ¨ä½¿ç”¨,ä¸èƒ½ä¿®æ”¹");
                 break;
             case 9:
-                me.errorMsg = lang("ĞÂÃÜÂëÓëÈ·ÈÏĞÂÃÜÂë²»Æ¥Åä,²»ÄÜĞŞ¸Ä");
+                me.errorMsg = lang("æ–°å¯†ç ä¸ç¡®è®¤æ–°å¯†ç ä¸åŒ¹é…,ä¸èƒ½ä¿®æ”¹");
                 break;
             case 10:
-                me.errorMsg = lang("ÃÜÂëĞŞ¸Ä³É¹¦");
+                me.errorMsg = lang("å¯†ç ä¿®æ”¹æˆåŠŸ");
                 break;
             case 11:
-                me.errorMsg = lang("±¾ÕËºÅÖ»ÄÜÔÚÖ¸¶¨µØÖ·Ê¹ÓÃ") + "<br/>" + mac;
+                me.errorMsg = lang("æœ¬è´¦å·åªèƒ½åœ¨æŒ‡å®šåœ°å€ä½¿ç”¨") + "<br/>" + mac;
                 break;
             case 14:
-                me.errorMsg = lang("×¢Ïú³É¹¦") + "<br/>" + UT + UF + UM;
+                me.errorMsg = lang("æ³¨é”€æˆåŠŸ") + "<br/>" + UT + UF + UM;
                 break;
             case 15:
-                me.errorMsg = lang("µÇÂ¼³É¹¦") + "<br/>" + UT + UF + UM;
+                me.errorMsg = lang("ç™»å½•æˆåŠŸ") + "<br/>" + UT + UF + UM;
                 break;
             default:
-                me.errorMsg = lang("ÕËºÅ»òÃÜÂë²»¶Ô£¬ÇëÖØĞÂÊäÈë");
+                me.errorMsg = lang("è´¦å·æˆ–å¯†ç ä¸å¯¹ï¼Œè¯·é‡æ–°è¾“å…¥");
                 break;
         }
     },
     accoutStatus: function () {
         var me = this;
         if (!term.ip || term.ip == "000.000.000.000") {
-            _alert(lang("»ñÈ¡ÖÕ¶ËÓÃ»§IPÊ§°Ü£¬ÇëÖØÊÔ£¡"));
-            me.errorMsg = lang("ACÈÏÖ¤Ê§°Ü");
+            _alert(lang("è·å–ç»ˆç«¯ç”¨æˆ·IPå¤±è´¥ï¼Œè¯·é‡è¯•ï¼"));
+            me.errorMsg = lang("ACè®¤è¯å¤±è´¥");
             $("#message").html(me.errorMsg);
             return false;
         }
@@ -1362,12 +1363,12 @@ var error = {
                             ? json.error_prompt_en
                             : json.error_prompt_zh;
                 } else {
-                    me.errorMsg = lang("ACÈÏÖ¤Ê§°Ü");
+                    me.errorMsg = lang("ACè®¤è¯å¤±è´¥");
                 }
                 $("#message").html(me.errorMsg);
             },
             error: function () {
-                $("#message").html(lang("ACÈÏÖ¤Ê§°Ü"));
+                $("#message").html(lang("ACè®¤è¯å¤±è´¥"));
             },
         });
         return false;
@@ -1377,7 +1378,7 @@ var error = {
         me.errorMsg = error_msg;
         var regx4095 = "Mac, IP, NASip, PORT err(6)!";
         if (error_msg.indexOf(regx4095) != -1) {
-            me.errorMsg = lang("ÓÃ»§Ê×´ÎµÇÂ¼ĞëĞŞ¸ÄÃÜÂë");
+            me.errorMsg = lang("ç”¨æˆ·é¦–æ¬¡ç™»å½•é¡»ä¿®æ”¹å¯†ç ");
             changePass();
             return;
         }
@@ -1405,12 +1406,12 @@ var error = {
                         changePass();
                     }
                 } else {
-                    me.errorMsg = lang("ACÈÏÖ¤Ê§°Ü");
+                    me.errorMsg = lang("ACè®¤è¯å¤±è´¥");
                 }
                 $("#message").html(me.errorMsg);
             },
             error: function () {
-                me.errorMsg = lang("ACÈÏÖ¤Ê§°Ü");
+                me.errorMsg = lang("ACè®¤è¯å¤±è´¥");
                 $("#message").html(me.errorMsg);
             },
         });
@@ -1418,14 +1419,14 @@ var error = {
 };
 function changePass(firstLogin) {
     if (firstLogin !== false) {
-        _alert(lang("Ê×´ÎµÇÂ¼ÇëĞŞ¸ÄÃÜÂë£¬È·±£ÕËºÅ°²È«£¡"));
+        _alert(lang("é¦–æ¬¡ç™»å½•è¯·ä¿®æ”¹å¯†ç ï¼Œç¡®ä¿è´¦å·å®‰å…¨ï¼"));
     }
     if (changePassMode == 0) {
         page.kind = term.type == 2 ? "mobile_29" : "pc_29";
         page.render();
     } else if (changePassMode == 1) {
         if (registerMode == 0) {
-            _alert(lang("Ë½ÓĞÔÆºóÌ¨²»Ö§³Ö×Ô·şÎñ·½Ê½ĞŞ¸ÄÃÜÂë£¡"));
+            _alert(lang("ç§æœ‰äº‘åå°ä¸æ”¯æŒè‡ªæœåŠ¡æ–¹å¼ä¿®æ”¹å¯†ç ï¼"));
             return false;
         }
         if (page.kind == "pc" || page.kind == "mobile") {
@@ -1477,7 +1478,7 @@ var changePassword = {
                 data: data,
                 success: function (succObj, succMsg, xhr) {
                     if (succObj.result == "ok" || succObj.result == "1") {
-                        _alert(lang("ĞŞ¸ÄÃÜÂë³É¹¦£¡"));
+                        _alert(lang("ä¿®æ”¹å¯†ç æˆåŠŸï¼"));
                     } else {
                         if (
                             typeof succObj.msg != "undefined" &&
@@ -1485,12 +1486,12 @@ var changePassword = {
                         ) {
                             _alert(lang(succObj.msg));
                         } else {
-                            _alert(lang("ĞŞ¸ÄÃÜÂëÊ§°Ü£¬ÇëÖØÊÔ£¡"));
+                            _alert(lang("ä¿®æ”¹å¯†ç å¤±è´¥ï¼Œè¯·é‡è¯•ï¼"));
                         }
                     }
                 },
                 error: function (succObj, succMsg, xhr) {
-                    _alert(lang("ĞŞ¸ÄÃÜÂëÊ§°Ü£¬ÇëÖØÊÔ£¡"));
+                    _alert(lang("ä¿®æ”¹å¯†ç å¤±è´¥ï¼Œè¯·é‡è¯•ï¼"));
                 },
                 complete: function () {
                     var captchaUrl =
@@ -1508,17 +1509,17 @@ var changePassword = {
     validate: function () {
         var msg = "";
         if (this.DDDDD == "" || this.DDDDD == null) {
-            msg = lang("ÕËºÅ²»ÄÜÎª¿Õ");
+            msg = lang("è´¦å·ä¸èƒ½ä¸ºç©º");
         } else if (this.upass == "" || this.upass == null) {
-            msg = lang("ÃÜÂë²»ÄÜÎª¿Õ");
+            msg = lang("å¯†ç ä¸èƒ½ä¸ºç©º");
         } else if (this.new_upass == "" || this.new_upass == null) {
-            msg = lang("ĞÂÃÜÂë²»ÄÜÎª¿Õ£¡");
+            msg = lang("æ–°å¯†ç ä¸èƒ½ä¸ºç©ºï¼");
         } else if (this.upass_confirm == "" || this.upass_confirm == null) {
-            msg = lang("È·ÈÏÃÜÂë²»ÄÜÎª¿Õ£¡");
+            msg = lang("ç¡®è®¤å¯†ç ä¸èƒ½ä¸ºç©ºï¼");
         } else if (this.new_upass != this.upass_confirm) {
-            msg = lang("ĞÂÃÜÂë²»Ò»ÖÂ£¡");
+            msg = lang("æ–°å¯†ç ä¸ä¸€è‡´ï¼");
         } else if (this.new_upass == this.upass) {
-            msg = lang("ĞÂÃÜÂë²»ÄÜºÍÔ­ÃÜÂëÏàÍ¬£¡");
+            msg = lang("æ–°å¯†ç ä¸èƒ½å’ŒåŸå¯†ç ç›¸åŒï¼");
         } else {
             return true;
         }
@@ -1589,7 +1590,7 @@ var login = {
             if (result) {
                 me.init(form);
             } else {
-                _alert(lang("ÇëÊäÈëÕıÈ·µÄÑéÖ¤Âë£¡"));
+                _alert(lang("è¯·è¾“å…¥æ­£ç¡®çš„éªŒè¯ç ï¼"));
                 return false;
             }
         });
@@ -1624,31 +1625,31 @@ var login = {
         var upass = $(form).find("input[name=upass]").val();
         if (form.name == "f1") {
             if (DDDDD == "") {
-                _alert(lang("ÇëÊäÈëÕËºÅ£¡"));
+                _alert(lang("è¯·è¾“å…¥è´¦å·ï¼"));
                 return false;
             }
             var reguser =
                 /^((?=.*?\w)(?=.*?[0-9a-zA-Z])|(?=.*?\w)(?=.*?[-._@])|(?=.*?[0-9a-zA-Z])(?=.*?[-._@]))[\wA-Za-z-._@]+$/;
             if (!reguser.test(DDDDD)) {
-                _alert(lang("ÕËºÅĞèÎªÊı×Ö¡¢×ÖÄ¸¡¢@¡¢-¡¢_¡¢.Ò»ÖÖ»ò2ÖÖµÄ×éºÏ£¡"));
+                _alert(lang("è´¦å·éœ€ä¸ºæ•°å­—ã€å­—æ¯ã€@ã€-ã€_ã€.ä¸€ç§æˆ–2ç§çš„ç»„åˆï¼"));
                 return false;
             }
             if (upass == "") {
-                _alert(lang("ÇëÊäÈëÃÜÂë£¡"));
+                _alert(lang("è¯·è¾“å…¥å¯†ç ï¼"));
                 return false;
             }
         } else if (form.name == "f2") {
             if (DDDDD == "" || !util.isValidMobile(DDDDD)) {
-                _alert(lang("ÇëÊäÈëÕıÈ·µÄÊÖ»úºÅ£¡"));
+                _alert(lang("è¯·è¾“å…¥æ­£ç¡®çš„æ‰‹æœºå·ï¼"));
                 return false;
             }
             if (upass == "") {
-                _alert(lang("ÇëÊäÈë¶ÌĞÅÑéÖ¤Âë£¡"));
+                _alert(lang("è¯·è¾“å…¥çŸ­ä¿¡éªŒè¯ç ï¼"));
                 return false;
             }
         } else if (form.name == "f3") {
             if (DDDDD == "") {
-                _alert(lang("ÇëÊäÈëÕËºÅ»òÊÖ»úºÅ£¡"));
+                _alert(lang("è¯·è¾“å…¥è´¦å·æˆ–æ‰‹æœºå·ï¼"));
                 return false;
             }
             var reguser =
@@ -1656,20 +1657,20 @@ var login = {
             if (!util.isValidMobile(DDDDD) && !reguser.test(DDDDD)) {
                 _alert(
                     lang(
-                        "ÕËºÅĞèÊÖ»úºÅ»òÊı×Ö¡¢×ÖÄ¸¡¢@¡¢-¡¢_¡¢.Ò»ÖÖ»ò2ÖÖµÄ×éºÏ£¡"
+                        "è´¦å·éœ€æ‰‹æœºå·æˆ–æ•°å­—ã€å­—æ¯ã€@ã€-ã€_ã€.ä¸€ç§æˆ–2ç§çš„ç»„åˆï¼"
                     )
                 );
                 return false;
             }
             if (upass == "") {
-                _alert(lang("ÇëÊäÈëÃÜÂë»ò¶ÌĞÅÑéÖ¤Âë£¡"));
+                _alert(lang("è¯·è¾“å…¥å¯†ç æˆ–çŸ­ä¿¡éªŒè¯ç ï¼"));
                 return false;
             }
         }
         if ($("select[name=ISP_select]")[0]) {
             var sel = $("select[name=ISP_select] option:selected").val();
             if (sel == "-1") {
-                _alert(lang("ÇëÑ¡ÔñÔËÓªÉÌ£¡"));
+                _alert(lang("è¯·é€‰æ‹©è¿è¥å•†ï¼"));
                 return false;
             }
         } else if ($("div[name=ISP_radio]")[0]) {
@@ -1677,7 +1678,7 @@ var login = {
                 "div[name=ISP_radio] input[name=network]:checked"
             ).val();
             if (sel == "-1") {
-                _alert(lang("ÇëÑ¡ÔñÔËÓªÉÌ£¡"));
+                _alert(lang("è¯·é€‰æ‹©è¿è¥å•†ï¼"));
                 return false;
             }
         }
@@ -1720,7 +1721,7 @@ var login = {
         this.portal_login(data, success, fail);
     },
     portal_login: function (data, success, fail) {
-        layer.msg(lang("ÕıÔÚµÇÂ¼..."));
+        layer.msg(lang("æ­£åœ¨ç™»å½•..."));
         data.terminal_type = term.type;
         data.lang = language.lang.toLowerCase();
         var url =
@@ -1770,7 +1771,7 @@ var login = {
                 }
             },
             error: function (error) {
-                _alert(lang("ÈÏÖ¤·½·¨µ÷ÓÃ³öÏÖÒì³££¬ÇëË¢ĞÂÒ³ÃæÖØÊÔ£¡"));
+                _alert(lang("è®¤è¯æ–¹æ³•è°ƒç”¨å‡ºç°å¼‚å¸¸ï¼Œè¯·åˆ·æ–°é¡µé¢é‡è¯•ï¼"));
             },
         });
     },
@@ -1818,15 +1819,15 @@ var login = {
                     fn();
                 } else {
                     if (term.type == 1) dingtalk.newTab.close();
-                    layer.msg(lang("ÁÙÊ±ÕËºÅÉÏÏßÊ§°Ü"));
+                    layer.msg(lang("ä¸´æ—¶è´¦å·ä¸Šçº¿å¤±è´¥"));
                 }
             },
             function (json) {
                 if (term.type == 1) dingtalk.newTab.close();
                 if (json.ret_code == 1) {
-                    layer.msg(lang("ÕËºÅÃÜÂë´íÎó£¡"));
+                    layer.msg(lang("è´¦å·å¯†ç é”™è¯¯ï¼"));
                 } else {
-                    layer.msg(lang("ÁÙÊ±ÕËºÅÉÏÏßÊ§°Ü"));
+                    layer.msg(lang("ä¸´æ—¶è´¦å·ä¸Šçº¿å¤±è´¥"));
                 }
             }
         );
@@ -1843,22 +1844,22 @@ var login = {
                 ) {
                     fn();
                 } else {
-                    layer.msg(lang("ÁÙÊ±ÕËºÅÉÏÏßÊ§°Ü"));
+                    layer.msg(lang("ä¸´æ—¶è´¦å·ä¸Šçº¿å¤±è´¥"));
                 }
             },
             function (json) {
                 if (json.ret_code == 2 || json.result == 0) {
                     fn();
                 } else if (json.ret_code == 1) {
-                    layer.msg(lang("ÕËºÅÃÜÂë´íÎó£¡"));
+                    layer.msg(lang("è´¦å·å¯†ç é”™è¯¯ï¼"));
                 } else {
-                    layer.msg(lang("ÁÙÊ±ÕËºÅÉÏÏßÊ§°Ü"));
+                    layer.msg(lang("ä¸´æ—¶è´¦å·ä¸Šçº¿å¤±è´¥"));
                 }
             }
         );
     },
     switch_network: function (R10, user_account) {
-        layer.msg(lang("ÕıÔÚÇĞ»»ÍøÂç£¬ÇëÉÔºò..."));
+        layer.msg(lang("æ­£åœ¨åˆ‡æ¢ç½‘ç»œï¼Œè¯·ç¨å€™..."));
         var form = $("<form></form>");
         form.attr("action", "/?url" + term.redirect);
         form.attr("method", "post");
@@ -1894,7 +1895,7 @@ var login = {
             gw_address: term.gw_address,
             login_type: login_type,
         };
-        layer.msg(lang("ÕıÔÚµÇÂ¼..."));
+        layer.msg(lang("æ­£åœ¨ç™»å½•..."));
         var url = page.portal_api + "login/short_login";
         util._jsonp({
             url: url,
@@ -1929,7 +1930,7 @@ var login = {
                 }
             },
             error: function (error) {
-                _alert(lang("ÈÏÖ¤·½·¨µ÷ÓÃ³öÏÖÒì³££¬ÇëË¢ĞÂÒ³ÃæÖØÊÔ£¡"));
+                _alert(lang("è®¤è¯æ–¹æ³•è°ƒç”¨å‡ºç°å¼‚å¸¸ï¼Œè¯·åˆ·æ–°é¡µé¢é‡è¯•ï¼"));
             },
         });
     },
@@ -1966,20 +1967,20 @@ var logout = {
                     }
                     page.kind = term.type == 2 ? "mobile_32" : "pc_2";
                     page.render(function () {
-                        $("#message").html(lang("×¢Ïú³É¹¦"));
+                        $("#message").html(lang("æ³¨é”€æˆåŠŸ"));
                     });
                     return false;
                 } else {
                     _alert(
                         lang(
-                            "×¢ÏúÊ§°Ü£¬¿ÉÄÜ²»ÔÚÏß»òÕßÒ³ÃæÒÑ¹ıÆÚ£¬ÇëË¢ĞÂÒ³ÃæÖØÊÔ£¡"
+                            "æ³¨é”€å¤±è´¥ï¼Œå¯èƒ½ä¸åœ¨çº¿æˆ–è€…é¡µé¢å·²è¿‡æœŸï¼Œè¯·åˆ·æ–°é¡µé¢é‡è¯•ï¼"
                         )
                     );
                     return false;
                 }
             },
             error: function (error) {
-                _alert(lang("×¢Ïú·½·¨µ÷ÓÃ³öÏÖÒì³££¬ÇëË¢ĞÂÒ³ÃæÖØÊÔ£¡"));
+                _alert(lang("æ³¨é”€æ–¹æ³•è°ƒç”¨å‡ºç°å¼‚å¸¸ï¼Œè¯·åˆ·æ–°é¡µé¢é‡è¯•ï¼"));
             },
         });
     },
@@ -2015,7 +2016,7 @@ var captcha = {
             error: function (error) {
                 _alert(
                     lang(
-                        "¼ì²éÑéÖ¤ÂëÓĞĞ§ĞÔÊ§°Ü£¬¿ÉÄÜÒ³ÃæÒÑ¹ıÆÚ»òÕßÍøÂçÒì³££¬ÇëË¢ĞÂÒ³ÃæÖØÊÔ£¡"
+                        "æ£€æŸ¥éªŒè¯ç æœ‰æ•ˆæ€§å¤±è´¥ï¼Œå¯èƒ½é¡µé¢å·²è¿‡æœŸæˆ–è€…ç½‘ç»œå¼‚å¸¸ï¼Œè¯·åˆ·æ–°é¡µé¢é‡è¯•ï¼"
                     )
                 );
             },
@@ -2061,7 +2062,7 @@ var _self = {
                 }
             },
             error: function (error) {
-                _alert(lang("×Ô·şÎñ·½·¨µ÷ÓÃ³öÏÖÒì³££¬ÇëË¢ĞÂÒ³ÃæÖØÊÔ£¡"));
+                _alert(lang("è‡ªæœåŠ¡æ–¹æ³•è°ƒç”¨å‡ºç°å¼‚å¸¸ï¼Œè¯·åˆ·æ–°é¡µé¢é‡è¯•ï¼"));
             },
         });
     },
@@ -2074,7 +2075,7 @@ var user = {
             $("#edit_body").find("#macList").length
         ) {
             if (!term.account && !term.ip) {
-                _alert(lang("»ñÈ¡ÓÃ»§ÕËºÅ»òÕßipÊ§°Ü"));
+                _alert(lang("è·å–ç”¨æˆ·è´¦å·æˆ–è€…ipå¤±è´¥"));
                 return false;
             }
             if (!term.account) term.account = "123";
@@ -2097,7 +2098,7 @@ var user = {
                             macList.length < 1 ||
                             typeof macList[0]["online_mac"] == "undefined"
                         ) {
-                            _alert(lang("ÕËºÅ°ó¶¨MACµØÖ·Îª¿Õ,¿É³¢ÊÔË¢ĞÂÒ³Ãæ"));
+                            _alert(lang("è´¦å·ç»‘å®šMACåœ°å€ä¸ºç©º,å¯å°è¯•åˆ·æ–°é¡µé¢"));
                             return false;
                         }
                         var oneTerminal = "";
@@ -2123,12 +2124,12 @@ var user = {
                                     "</td>" +
                                     "<td>" +
                                     macList[i]["online_mac"].toUpperCase() +
-                                    lang("±¾»ú") +
+                                    lang("æœ¬æœº") +
                                     "</td>" +
                                     '<td><button type="button" class="btn" style="height: 25px;width: 70px;margin: 2px 0; padding: 0;" onClick="user.type_unbind_mac(this,\'' +
                                     macList[i]["online_mac"].toUpperCase() +
                                     "',1)\">" +
-                                    lang("×¢Ïú") +
+                                    lang("æ³¨é”€") +
                                     "</button></td>" +
                                     "</tr>";
                             } else {
@@ -2143,7 +2144,7 @@ var user = {
                                     '<td><button type="button" class="btn" style="height: 25px;width: 70px;margin: 2px 0; padding: 0;" onClick="user.type_unbind_mac(this,\'' +
                                     macList[i]["online_mac"].toUpperCase() +
                                     "',2)\">" +
-                                    lang("½â³ı°ó¶¨") +
+                                    lang("è§£é™¤ç»‘å®š") +
                                     "</button></td>" +
                                     "</tr>";
                             }
@@ -2163,7 +2164,7 @@ var user = {
                     }
                 },
                 error: function (error) {
-                    _alert(lang("»ñÈ¡°ó¶¨MACÒì³££¬ÇëË¢ĞÂÒ³ÃæÖØÊÔ£¡"));
+                    _alert(lang("è·å–ç»‘å®šMACå¼‚å¸¸ï¼Œè¯·åˆ·æ–°é¡µé¢é‡è¯•ï¼"));
                 },
             });
         }
@@ -2172,10 +2173,10 @@ var user = {
         var msg = "";
         var r = "";
         if (type == 1) {
-            msg = lang("È·¶¨×¢Ïú?");
+            msg = lang("ç¡®å®šæ³¨é”€?");
             r = confirm(msg);
         } else {
-            msg = lang("È·¶¨½â°óMACµØÖ·");
+            msg = lang("ç¡®å®šè§£ç»‘MACåœ°å€");
             r = confirm(msg);
         }
         if (r == true) {
@@ -2213,7 +2214,7 @@ var user = {
             success: function (json) {
                 if (json.result == 1 || json.result == "ok") {
                     if (type == 1) {
-                        layer.msg(lang("ÕıÔÚÌø×ªµÇÂ¼Ò³..."));
+                        layer.msg(lang("æ­£åœ¨è·³è½¬ç™»å½•é¡µ..."));
                         setTimeout(function () {
                             if (
                                 "undefined" != typeof rebackLink &&
@@ -2240,7 +2241,7 @@ var user = {
                 }
             },
             error: function (error) {
-                _alert(lang("½â°óMAC·½·¨µ÷ÓÃ³öÏÖÒì³££¬ÇëË¢ĞÂÒ³ÃæÖØÊÔ£¡"));
+                _alert(lang("è§£ç»‘MACæ–¹æ³•è°ƒç”¨å‡ºç°å¼‚å¸¸ï¼Œè¯·åˆ·æ–°é¡µé¢é‡è¯•ï¼"));
             },
         });
     },
@@ -2307,25 +2308,25 @@ var language = {
     },
     init_change: function () {
         if (page.kind == "pc" || page.kind == "mobile") {
-            window.document.title = page.window_title + lang("ÉÏÍøµÇÂ¼Ò³");
+            window.document.title = page.window_title + lang("ä¸Šç½‘ç™»å½•é¡µ");
         } else if (page.kind == "pc_1" || page.kind == "mobile_31") {
-            window.document.title = page.window_title + lang("×¢ÏúÒ³");
+            window.document.title = page.window_title + lang("æ³¨é”€é¡µ");
         } else if (page.kind == "pc_3" || page.kind == "mobile_33") {
-            window.document.title = page.window_title + lang("µÇÂ¼³É¹¦Ò³");
+            window.document.title = page.window_title + lang("ç™»å½•æˆåŠŸé¡µ");
         } else if (page.kind == "pc_2" || page.kind == "mobile_32") {
-            window.document.title = page.window_title + lang("ĞÅÏ¢Ò³");
+            window.document.title = page.window_title + lang("ä¿¡æ¯é¡µ");
         } else if (page.kind == "pc_26" || page.kind == "mobile_26") {
-            window.document.title = page.window_title + lang("Î¢ĞÅÈÏÖ¤Ò³");
+            window.document.title = page.window_title + lang("å¾®ä¿¡è®¤è¯é¡µ");
         } else if (page.kind == "pc_27" || page.kind == "mobile_27") {
-            window.document.title = page.window_title + lang("É¨ÃèÈÏÖ¤Ò³");
+            window.document.title = page.window_title + lang("æ‰«æè®¤è¯é¡µ");
         } else if (page.kind == "pc_09" || page.kind == "mobile_09") {
-            window.document.title = page.window_title + lang("ÃâÔğÉùÃ÷");
+            window.document.title = page.window_title + lang("å…è´£å£°æ˜");
         } else if (page.kind == "pc_20" || page.kind == "mobile_10") {
-            window.document.title = page.window_title + lang("¿ìËÙµÇÂ¼Ò³");
+            window.document.title = page.window_title + lang("å¿«é€Ÿç™»å½•é¡µ");
         } else if (page.kind == "pc_29" || page.kind == "mobile_29") {
-            window.document.title = page.window_title + lang("ĞŞ¸ÄÃÜÂëÒ³");
+            window.document.title = page.window_title + lang("ä¿®æ”¹å¯†ç é¡µ");
         } else if (page.kind == "pc_5" || page.kind == "mobile_35") {
-            window.document.title = page.window_title + lang("ÓÃ»§ĞÅÏ¢Ò³");
+            window.document.title = page.window_title + lang("ç”¨æˆ·ä¿¡æ¯é¡µ");
         } else if (page.kind == "pc_38" || page.kind == "mobile_38") {
         } else if (page.kind == "pc_signup" || page.kind == "mobile_signup") {
             if (store.get("i18n_lang") == "zh-CN") {
@@ -2341,13 +2342,13 @@ var language = {
     },
 };
 var fast_login = function (useIP) {
-    window.document.title = lang("ÉÏÍøµÇÂ¼Ò³");
+    window.document.title = lang("ä¸Šç½‘ç™»å½•é¡µ");
     if (!term.mac || term.mac == "000000000000" || term.mac == "111111111111") {
-        _alert(lang("»ñÈ¡ÓÃ»§MACµØÖ·Ê§°Ü£¬ÇëÖØÊÔ£¡"));
+        _alert(lang("è·å–ç”¨æˆ·MACåœ°å€å¤±è´¥ï¼Œè¯·é‡è¯•ï¼"));
         return false;
     }
     if (!term.ip || term.ip == "000.000.000.000") {
-        _alert(lang("»ñÈ¡ÖÕ¶ËÓÃ»§IPÊ§°Ü£¬ÇëÖØÊÔ£¡"));
+        _alert(lang("è·å–ç»ˆç«¯ç”¨æˆ·IPå¤±è´¥ï¼Œè¯·é‡è¯•ï¼"));
         return false;
     }
     var url = page.portal_api + "perceive";
@@ -2391,7 +2392,7 @@ var fast_login = function (useIP) {
                     $("#message").html(
                         typeof json.msg != "undefined"
                             ? json.msg
-                            : lang("ÈÏÖ¤Ê§°Ü")
+                            : lang("è®¤è¯å¤±è´¥")
                     );
                 });
             }
@@ -2408,7 +2409,7 @@ var duodian = {
             e.preventDefault();
             layer.open({
                 type: 1,
-                title: lang("É¨Ãè¶şÎ¬ÂëÏÂÔØ¶ßµãAPP"),
+                title: lang("æ‰«æäºŒç»´ç ä¸‹è½½å“†ç‚¹APP"),
                 closeBtn: 0,
                 area: "300",
                 shadeClose: true,
@@ -2420,7 +2421,7 @@ var duodian = {
             window.setTimeout(function () {
                 _alert(
                     lang(
-                        "ÈçÄúÎ´°²×°¶ßµã£¬ÇëÏÈÏÂÔØ°²×°£»ÈçÒÑ°²×°£¬ÇëºöÂÔ¸ÃÌáÊ¾¡£"
+                        "å¦‚æ‚¨æœªå®‰è£…å“†ç‚¹ï¼Œè¯·å…ˆä¸‹è½½å®‰è£…ï¼›å¦‚å·²å®‰è£…ï¼Œè¯·å¿½ç•¥è¯¥æç¤ºã€‚"
                     )
                 );
             }, 1000);
@@ -2502,14 +2503,14 @@ function get_notice_content() {
             url: url,
             data: {},
             success: function (json) {
-                var content = lang("Í¨Öª¹«¸æÄÚÈİÎª¿Õ£¡");
+                var content = lang("é€šçŸ¥å…¬å‘Šå†…å®¹ä¸ºç©ºï¼");
                 if (json.result == 1 && json.content) {
                     content = json.content;
                 }
                 $(".edit_backstage").find("marquee").html(content);
             },
             error: function (error) {
-                var content = lang("¶ÁÈ¡Í¨Öª¹«¸æÄÚÈİ³öÏÖÒì³££¡");
+                var content = lang("è¯»å–é€šçŸ¥å…¬å‘Šå†…å®¹å‡ºç°å¼‚å¸¸ï¼");
                 $(".edit_backstage").find("marquee").html(content);
             },
         });
@@ -2579,20 +2580,20 @@ var editInfo = {
                             page.user_info.indexOf("flow_progress") != -1
                         ) {
                             $(".progress .progress_yi").text(
-                                lang("ÒÑÊ¹ÓÃÁ÷Á¿:") + data.use_flow
+                                lang("å·²ä½¿ç”¨æµé‡:") + data.use_flow
                             );
                             $(".progress .progress_wei").text(
-                                lang("¿ÉÊ¹ÓÃÁ÷Á¿:") + data.available_flow
+                                lang("å¯ä½¿ç”¨æµé‡:") + data.available_flow
                             );
                         } else {
                             $(".progress .progress_yi").css("width", "300px");
                             $(".progress .progress_wei").css("width", "350px");
                             $(".progress .progress_wei").css("left", "578px");
                             $(".progress .progress_yi").text(
-                                lang("ÒÑÊ¹ÓÃÁ÷Á¿:") + lang("Á÷Á¿Î´ÅäÖÃ")
+                                lang("å·²ä½¿ç”¨æµé‡:") + lang("æµé‡æœªé…ç½®")
                             );
                             $(".progress .progress_wei").text(
-                                lang("¿ÉÊ¹ÓÃÁ÷Á¿:") + lang("Á÷Á¿Î´ÅäÖÃ")
+                                lang("å¯ä½¿ç”¨æµé‡:") + lang("æµé‡æœªé…ç½®")
                             );
                         }
                     } else if (data.progress_type == 2) {
@@ -2602,28 +2603,28 @@ var editInfo = {
                             page.user_info.indexOf("flow_progress") != -1
                         ) {
                             $(".progress .progress_yi").text(
-                                lang("ÒÑÊ¹ÓÃÊ±³¤:") + data.use_time
+                                lang("å·²ä½¿ç”¨æ—¶é•¿:") + data.use_time
                             );
                             $(".progress .progress_wei").text(
-                                lang("¿ÉÊ¹ÓÃÊ±³¤:") + data.available_time
+                                lang("å¯ä½¿ç”¨æ—¶é•¿:") + data.available_time
                             );
                         } else {
                             $(".progress .progress_yi").css("width", "300px");
                             $(".progress .progress_wei").css("width", "350px");
                             $(".progress .progress_wei").css("left", "578px");
                             $(".progress .progress_yi").text(
-                                lang("ÒÑÊ¹ÓÃÊ±³¤:") + lang("Ê±³¤Î´ÅäÖÃ")
+                                lang("å·²ä½¿ç”¨æ—¶é•¿:") + lang("æ—¶é•¿æœªé…ç½®")
                             );
                             $(".progress .progress_wei").text(
-                                lang("¿ÉÊ¹ÓÃÊ±³¤:") + lang("Ê±³¤Î´ÅäÖÃ")
+                                lang("å¯ä½¿ç”¨æ—¶é•¿:") + lang("æ—¶é•¿æœªé…ç½®")
                             );
                         }
                     } else {
                         $(".progress .progress_yi").text(
-                            lang("ÒÑÊ¹ÓÃ:") + lang("ÎŞÏŞÖÆ")
+                            lang("å·²ä½¿ç”¨:") + lang("æ— é™åˆ¶")
                         );
                         $(".progress .progress_wei").text(
-                            lang("Î´Ê¹ÓÃ:") + lang("ÎŞÏŞÖÆ")
+                            lang("æœªä½¿ç”¨:") + lang("æ— é™åˆ¶")
                         );
                     }
                     for (var i = 0; i < user_array.length; i++) {
@@ -2647,7 +2648,7 @@ var editInfo = {
             },
             error: function (error) {
                 $("[name=user_info]").html(
-                    lang("ÓÃ»§ĞÅÏ¢²éÑ¯·½·¨µ÷ÓÃ³öÏÖÒì³££¬ÇëË¢ĞÂÒ³ÃæÖØÊÔ£¡")
+                    lang("ç”¨æˆ·ä¿¡æ¯æŸ¥è¯¢æ–¹æ³•è°ƒç”¨å‡ºç°å¼‚å¸¸ï¼Œè¯·åˆ·æ–°é¡µé¢é‡è¯•ï¼")
                 );
             },
         });
@@ -2710,7 +2711,7 @@ var editInfo = {
                 ",editInfo." +
                 query_info +
                 ')">' +
-                lang("Ê×Ò³") +
+                lang("é¦–é¡µ") +
                 "</a></li>";
             start_rn = (page_index - 2) * me.page_size + 1;
             end_rn = (page_index - 1) * me.page_size;
@@ -2724,7 +2725,7 @@ var editInfo = {
                 ",editInfo." +
                 query_info +
                 ')">' +
-                lang("ÉÏÒ»Ò³") +
+                lang("ä¸Šä¸€é¡µ") +
                 "</a></li>";
         }
         if (page_index < total_page) {
@@ -2743,7 +2744,7 @@ var editInfo = {
                 ",editInfo." +
                 query_info +
                 ')">' +
-                lang("ÏÂÒ»Ò³") +
+                lang("ä¸‹ä¸€é¡µ") +
                 "</a></li>";
             start_rn = (total_page - 1) * me.page_size + 1;
             end_rn = total_record_num;
@@ -2757,22 +2758,22 @@ var editInfo = {
                 ",editInfo." +
                 query_info +
                 ')">' +
-                lang("Î²Ò³") +
+                lang("å°¾é¡µ") +
                 "</a></li>";
         }
         html_data +=
             "<li><span>" +
-            lang("¹²") +
+            lang("å…±") +
             total_record_num +
-            lang("Ìõ¼ÇÂ¼") +
+            lang("æ¡è®°å½•") +
             "&nbsp;" +
-            lang("·Ö") +
+            lang("åˆ†") +
             total_page +
-            lang("Ò³") +
+            lang("é¡µ") +
             "&nbsp;" +
-            lang("µ±Ç°µÚ") +
+            lang("å½“å‰ç¬¬") +
             page_index +
-            lang("Ò³") +
+            lang("é¡µ") +
             "</span></li>";
         html_data += "</ul>";
         $("#pagination_" + query_info).html(html_data);
@@ -2864,7 +2865,7 @@ var editInfo = {
                                                 "mac_address"
                                             ].toUpperCase() +
                                             "',1)\">" +
-                                            lang("×¢Ïú") +
+                                            lang("æ³¨é”€") +
                                             "</button>";
                                     } else {
                                         playButtonHtml =
@@ -2873,7 +2874,7 @@ var editInfo = {
                                                 "mac_address"
                                             ].toUpperCase() +
                                             "',2)\">" +
-                                            lang("½â³ı°ó¶¨") +
+                                            lang("è§£é™¤ç»‘å®š") +
                                             "</button>";
                                     }
                                     tbodyHtml +=
@@ -2893,7 +2894,7 @@ var editInfo = {
                     } else {
                         var theadHtml =
                             '<thead><tr style="border-bottom: 1px solid black; "><th style="width:6%;text-align: center !important;font-weight: normal;">' +
-                            lang("ĞòºÅ") +
+                            lang("åºå·") +
                             "</th>";
                         var tbodyHtml = '<tbody style="text-align: center; ">';
                         for (var i = 0; i < query_array.length; i++) {
@@ -2928,7 +2929,7 @@ var editInfo = {
                                                 "mac_address"
                                             ].toUpperCase() +
                                             "',1)\">" +
-                                            lang("×¢Ïú") +
+                                            lang("æ³¨é”€") +
                                             "</button>";
                                     } else {
                                         playButtonHtml =
@@ -2937,7 +2938,7 @@ var editInfo = {
                                                 "mac_address"
                                             ].toUpperCase() +
                                             "',2)\">" +
-                                            lang("½â³ı°ó¶¨") +
+                                            lang("è§£é™¤ç»‘å®š") +
                                             "</button>";
                                     }
                                     tbodyHtml +=
@@ -2967,7 +2968,7 @@ var editInfo = {
                 }
             },
             error: function (error) {
-                alert(lang("ÓÃ»§ĞÅÏ¢²éÑ¯·½·¨µ÷ÓÃ³öÏÖÒì³££¬ÇëË¢ĞÂÒ³ÃæÖØÊÔ£¡"));
+                alert(lang("ç”¨æˆ·ä¿¡æ¯æŸ¥è¯¢æ–¹æ³•è°ƒç”¨å‡ºç°å¼‚å¸¸ï¼Œè¯·åˆ·æ–°é¡µé¢é‡è¯•ï¼"));
                 return false;
             },
         });
@@ -2994,7 +2995,7 @@ var sms = {
         });
     },
     send: function () {
-        _alert(lang("Î´ÆôÓÃ¶ÌĞÅ¹¦ÄÜ"));
+        _alert(lang("æœªå¯ç”¨çŸ­ä¿¡åŠŸèƒ½"));
     },
 };
 var qrCode = {
@@ -3005,17 +3006,17 @@ var qrCode = {
         });
     },
     autosubmit: function () {
-        _alert(lang("Î´ÆôÓÃ¶şÎ¬ÂëÉ¨ÂëµÇÂ¼¹¦ÄÜ"));
+        _alert(lang("æœªå¯ç”¨äºŒç»´ç æ‰«ç ç™»å½•åŠŸèƒ½"));
     },
 };
 var dingtalk = {
     init: function () {
         $("[name=dingtalk_login]").on("click", function () {
-            _alert(lang("Î´ÆôÓÃ¶¤¶¤ÈÏÖ¤¹¦ÄÜ"));
+            _alert(lang("æœªå¯ç”¨é’‰é’‰è®¤è¯åŠŸèƒ½"));
         });
     },
     sonPara: function () {
-        _alert(lang("Î´ÆôÓÃ¶¤¶¤ÈÏÖ¤¹¦ÄÜ"));
+        _alert(lang("æœªå¯ç”¨é’‰é’‰è®¤è¯åŠŸèƒ½"));
     },
 };
 var visitor = {
@@ -3026,13 +3027,13 @@ var visitor = {
         });
     },
     signup_init: function () {
-        _alert(lang("Î´ÆôÓÃ·Ã¿Í¹¦ÄÜ"));
+        _alert(lang("æœªå¯ç”¨è®¿å®¢åŠŸèƒ½"));
     },
     groupScanQRCode: function () {
-        _alert(lang("Î´ÆôÓÃ·Ã¿Í¹¦ÄÜ"));
+        _alert(lang("æœªå¯ç”¨è®¿å®¢åŠŸèƒ½"));
     },
     init_select_change_input: function () {
-        _alert(lang("Î´ÆôÓÃ·Ã¿Í¹¦ÄÜ"));
+        _alert(lang("æœªå¯ç”¨è®¿å®¢åŠŸèƒ½"));
     },
 };
 var general = {
@@ -3043,13 +3044,13 @@ var general = {
         });
     },
     signup_init: function () {
-        _alert(lang("Î´ÆôÓÃÆÕ½Ì¹¦ÄÜ"));
+        _alert(lang("æœªå¯ç”¨æ™®æ•™åŠŸèƒ½"));
     },
     groupScanQRCode: function () {
-        _alert(lang("Î´ÆôÓÃÆÕ½Ì¹¦ÄÜ"));
+        _alert(lang("æœªå¯ç”¨æ™®æ•™åŠŸèƒ½"));
     },
     init_select_change_input: function () {
-        _alert(lang("Î´ÆôÓÃÆÕ½Ì¹¦ÄÜ"));
+        _alert(lang("æœªå¯ç”¨æ™®æ•™åŠŸèƒ½"));
     },
 };
 var ad = { init: function () { } };
@@ -3093,13 +3094,13 @@ var sms = {
             form.find("[name=C1]").length > 0 &&
             !form.find("[name=C1]")[0].checked
         ) {
-            _alert(lang("ÇëÔÄ¶Á²¢Í¬Òâ¡¶ÃâÔğÉùÃ÷¡·"));
+            _alert(lang("è¯·é˜…è¯»å¹¶åŒæ„ã€Šå…è´£å£°æ˜ã€‹"));
             return false;
         }
         var inp_phone = form.find("input[name=DDDDD]");
         var phone = inp_phone.val();
         if (!phone || !util.isValidMobile(phone)) {
-            _alert(lang("ÊÖ»úºÅ²»ºÏ·¨£¬ÇëÖØĞÂÌîĞ´£¡"));
+            _alert(lang("æ‰‹æœºå·ä¸åˆæ³•ï¼Œè¯·é‡æ–°å¡«å†™ï¼"));
             this.btn_sms.attr("disabled", false);
             inp_phone.focus();
             return false;
@@ -3124,12 +3125,12 @@ var sms = {
             data: data,
             success: function (json) {
                 if (json.result == 1 || json.result == "ok") {
-                    _alert(lang("ÑéÖ¤ÂëÕıÏÂ·¢£¬Çë×¢Òâ²éÊÕ£¡"));
+                    _alert(lang("éªŒè¯ç æ­£ä¸‹å‘ï¼Œè¯·æ³¨æ„æŸ¥æ”¶ï¼"));
                 } else {
                     _alert(
                         lang(json.msg) ||
                         lang(
-                            "·¢ËÍÑéÖ¤ÂëÊ§°Ü£¬ÒòÎªÍøÂçÎÊÌâ»òÕßÒ³ÃæÒÑ¹ıÆÚ£¬ÇëË¢ĞÂÒ³ÃæÖØÊÔ£¡<br/>Èç¹ûÒÑÊÕµ½ÑéÖ¤Âë£¬ÇëºöÂÔ´ËÌáÊ¾£¡"
+                            "å‘é€éªŒè¯ç å¤±è´¥ï¼Œå› ä¸ºç½‘ç»œé—®é¢˜æˆ–è€…é¡µé¢å·²è¿‡æœŸï¼Œè¯·åˆ·æ–°é¡µé¢é‡è¯•ï¼<br/>å¦‚æœå·²æ”¶åˆ°éªŒè¯ç ï¼Œè¯·å¿½ç•¥æ­¤æç¤ºï¼"
                         )
                     );
                 }
@@ -3137,7 +3138,7 @@ var sms = {
             error: function (error) {
                 _alert(
                     lang(
-                        "·¢ËÍÑéÖ¤ÂëÊ§°Ü£¬ÒòÎªÍøÂçÎÊÌâ»òÕßÒ³ÃæÒÑ¹ıÆÚ£¬ÇëË¢ĞÂÒ³ÃæÖØÊÔ£¡<br/>Èç¹ûÒÑÊÕµ½ÑéÖ¤Âë£¬ÇëºöÂÔ´ËÌáÊ¾£¡"
+                        "å‘é€éªŒè¯ç å¤±è´¥ï¼Œå› ä¸ºç½‘ç»œé—®é¢˜æˆ–è€…é¡µé¢å·²è¿‡æœŸï¼Œè¯·åˆ·æ–°é¡µé¢é‡è¯•ï¼<br/>å¦‚æœå·²æ”¶åˆ°éªŒè¯ç ï¼Œè¯·å¿½ç•¥æ­¤æç¤ºï¼"
                     )
                 );
             },
@@ -3156,7 +3157,7 @@ var sms = {
                 me.btn_sms.attr("disabled", true);
             },
             endFun: function () {
-                me.btn_sms.val(lang("»ñÈ¡ÑéÖ¤Âë"));
+                me.btn_sms.val(lang("è·å–éªŒè¯ç "));
                 me.btn_sms.attr("disabled", false);
             },
         });
@@ -3202,7 +3203,7 @@ var qrCode = {
             });
         }
         if (!term.ip || term.ip == "000.000.000.000") {
-            _alert(lang("»ñÈ¡ÖÕ¶ËÓÃ»§IPÊ§°Ü£¬ÇëÖØÊÔ£¡"));
+            _alert(lang("è·å–ç»ˆç«¯ç”¨æˆ·IPå¤±è´¥ï¼Œè¯·é‡è¯•ï¼"));
             return false;
         }
         var url = page.portal_api + "qrcode/create";
@@ -3249,14 +3250,14 @@ var qrCode = {
                 }
             },
             error: function (error) {
-                _alert(lang("¼ÓÔØ¶şÎ¬Âë·½·¨µ÷ÓÃ³öÏÖÒì³££¬ÇëË¢ĞÂÒ³ÃæÖØÊÔ£¡"));
+                _alert(lang("åŠ è½½äºŒç»´ç æ–¹æ³•è°ƒç”¨å‡ºç°å¼‚å¸¸ï¼Œè¯·åˆ·æ–°é¡µé¢é‡è¯•ï¼"));
             },
         });
     },
     timingRefresh: function () {
         var me = this;
         if (!term.ip || term.ip == "000.000.000.000") {
-            $("#loading").html(lang("·Ã¿ÍÖÕ¶ËIP»ñÈ¡Ê§°Ü£¬Çë¹Ø±Õä¯ÀÀÆ÷ÖØÊÔ¡£"));
+            $("#loading").html(lang("è®¿å®¢ç»ˆç«¯IPè·å–å¤±è´¥ï¼Œè¯·å…³é—­æµè§ˆå™¨é‡è¯•ã€‚"));
             return false;
         } else {
             me.loadQRcode();
@@ -3294,7 +3295,7 @@ var qrCode = {
                     }
                 },
                 error: function (error) {
-                    _alert(lang("ÔÚÏß½Ó¿Ú·½·¨µ÷ÓÃ³öÏÖÒì³££¬ÇëË¢ĞÂÒ³ÃæÖØÊÔ£¡"));
+                    _alert(lang("åœ¨çº¿æ¥å£æ–¹æ³•è°ƒç”¨å‡ºç°å¼‚å¸¸ï¼Œè¯·åˆ·æ–°é¡µé¢é‡è¯•ï¼"));
                 },
             });
         } else {
@@ -3326,7 +3327,7 @@ var qrCode = {
         });
         var successStr = util.getQueryString("success");
         if (successStr == "1") {
-            $("#div_tip").find("p").text("³É¹¦ÊÚÈ¨");
+            $("#div_tip").find("p").text("æˆåŠŸæˆæƒ");
             var show_display = $("#show_display").find("a").html();
             $("#show_display").html(
                 show_display +
@@ -3342,7 +3343,7 @@ var qrCode = {
         if (Rpost != 2) {
             $("#submit").on("click", function () {
                 if (!term.ip || term.ip == "000.000.000.000") {
-                    _alert(lang("»ñÈ¡±»É¨ÂëÖÕ¶ËÓÃ»§IPÊ§°Ü£¬ÇëÖØÊÔ£¡"));
+                    _alert(lang("è·å–è¢«æ‰«ç ç»ˆç«¯ç”¨æˆ·IPå¤±è´¥ï¼Œè¯·é‡è¯•ï¼"));
                     return false;
                 }
                 var url = page.portal_api + "qrcode";
@@ -3360,7 +3361,7 @@ var qrCode = {
                     },
                     success: function (json) {
                         if (json.result == 1 || json.result == "ok") {
-                            _alert("É¨ÂëÊÚÈ¨µÇÂ¼³É¹¦£¡");
+                            _alert("æ‰«ç æˆæƒç™»å½•æˆåŠŸï¼");
                             window.location =
                                 window.location.protocol +
                                 "//" +
@@ -3369,7 +3370,7 @@ var qrCode = {
                             if (typeof json.msg != "undefined") {
                                 _alert(json.msg);
                             } else {
-                                _alert("É¨ÂëÊÚÈ¨µÇÂ¼Ê§°Ü£¬ÇëÖØÊÔ£¡");
+                                _alert("æ‰«ç æˆæƒç™»å½•å¤±è´¥ï¼Œè¯·é‡è¯•ï¼");
                             }
                         }
                     },
@@ -3528,7 +3529,7 @@ var _init = function (callback) {
     }
     custom && custom.init();
     if (page.kind == "pc" || page.kind == "mobile") {
-        window.document.title = page.window_title + lang("ÉÏÍøµÇÂ¼Ò³");
+        window.document.title = page.window_title + lang("ä¸Šç½‘ç™»å½•é¡µ");
         if (util.getQueryString("UserV6IP")) {
             term.ipv6 = util.getQueryString("UserV6IP");
         } else {
@@ -3566,12 +3567,12 @@ var _init = function (callback) {
     ) {
         $("[name=cancelAutoLogin]").on("click", function (e) {
             autoLogin.disable();
-            _alert(lang("ÒÑÈ¡Ïû×Ô¶¯µÇÂ¼"));
+            _alert(lang("å·²å–æ¶ˆè‡ªåŠ¨ç™»å½•"));
             return false;
         });
         if (page.kind == "pc_1" || page.kind == "mobile_31") {
             adfldtype = "1001";
-            window.document.title = page.window_title + lang("×¢ÏúÒ³");
+            window.document.title = page.window_title + lang("æ³¨é”€é¡µ");
             if (
                 typeof uid != "undefined" &&
                 uid != "12345678901234567890123456" &&
@@ -3585,15 +3586,15 @@ var _init = function (callback) {
             ) {
                 term.mac = cookie.get("mac");
             }
-            var str = "ÈÏÖ¤ĞÅÏ¢Îª£º<br/>"
-            str += `¹¤ºÅ/Ñ§ºÅ/ÕËºÅ£º${term.account}<br/>`
-            str += `IPv4µØÖ·£º${term.ip}<br/>`
-            str += `MACµØÖ·£º${term.mac.toUpperCase()}<br/>`
-            str += `Éè±¸ÀàĞÍ£º${["ÆäËû", "PC", "ÊÖ»ú", "Æ½°å"][term.type]}<br/>`
-            str += `ÕËºÅÃû³Æ£º${NID}<br/>`
-            str += `ÈÏÖ¤Ê±¼ä£º${stime}<br/>`
-            str += `¹ıÆÚÊ±¼ä£º${etime}<br/>`
-            str += `ÒÑÓÃÁ÷Á¿£º${flow1 / 1024 + flow3 + flow0 / 1024}MByte<br/>`
+            var str = "è®¤è¯ä¿¡æ¯ä¸ºï¼š<br/>"
+            str += `å·¥å·/å­¦å·/è´¦å·ï¼š${term.account}<br/>`
+            str += `IPv4åœ°å€ï¼š${term.ip}<br/>`
+            str += `MACåœ°å€ï¼š${term.mac.toUpperCase()}<br/>`
+            str += `è®¾å¤‡ç±»å‹ï¼š${["å…¶ä»–", "PC", "æ‰‹æœº", "å¹³æ¿"][term.type]}<br/>`
+            str += `è´¦å·åç§°ï¼š${NID}<br/>`
+            str += `è®¤è¯æ—¶é—´ï¼š${stime}<br/>`
+            str += `è¿‡æœŸæ—¶é—´ï¼š${etime}<br/>`
+            str += `å·²ç”¨æµé‡ï¼š${flow1 / 1024 + flow3 + flow0 / 1024}MByte<br/>`
             $("[name=PageTips]").html(lang(str));
         } else {
             adfldtype = "1003";
@@ -3604,7 +3605,7 @@ var _init = function (callback) {
             ) {
                 term.account = $.trim(UID);
             }
-            window.document.title = page.window_title + lang("µÇÂ¼³É¹¦Ò³");
+            window.document.title = page.window_title + lang("ç™»å½•æˆåŠŸé¡µ");
             var m = window.m || 0,
                 UL = window.UL || "";
             login.redirect(m, UL);
@@ -3636,19 +3637,19 @@ var _init = function (callback) {
         }
         user.find_mac();
     } else if (page.kind == "pc_2" || page.kind == "mobile_32") {
-        window.document.title = page.window_title + lang("ĞÅÏ¢Ò³");
+        window.document.title = page.window_title + lang("ä¿¡æ¯é¡µ");
         adfldtype = "1002";
         acForward.initialize();
         var ErrorMsg = util.getQueryString("ErrorMsg");
         var RetCode = util.getQueryString("RetCode");
         if (RetCode) {
-            $("#message").html(ErrorMsg || lang("ÈÏÖ¤Ê§°Ü"));
+            $("#message").html(ErrorMsg || lang("è®¤è¯å¤±è´¥"));
             error.portalErr.ret_code = RetCode;
             error.portalErr.msg = ErrorMsg;
             error.showMsg();
         }
     } else if (page.kind == "pc_5" || page.kind == "mobile_35") {
-        window.document.title = page.window_title + lang("ÓÃ»§ĞÅÏ¢Ò³");
+        window.document.title = page.window_title + lang("ç”¨æˆ·ä¿¡æ¯é¡µ");
         if (
             term.account.length == 0 &&
             typeof uid != "undefined" &&
@@ -3670,7 +3671,7 @@ var _init = function (callback) {
         dingtalk.init();
         dingtalk.sonPara();
     } else if (page.kind == "pc_26" || page.kind == "mobile_26") {
-        window.document.title = page.window_title + lang("Î¢ĞÅÈÏÖ¤Ò³");
+        window.document.title = page.window_title + lang("å¾®ä¿¡è®¤è¯é¡µ");
         if (
             util.getQueryString("wlanuserip") &&
             util.getQueryString("wlanusermac")
@@ -3685,7 +3686,7 @@ var _init = function (callback) {
         );
         acForward.initialize();
     } else if (page.kind == "pc_27" || page.kind == "mobile_27") {
-        window.document.title = page.window_title + lang("É¨ÃèÈÏÖ¤Ò³");
+        window.document.title = page.window_title + lang("æ‰«æè®¤è¯é¡µ");
         acForward.initialize();
         var phone = util.getQueryString("user_phone");
         if (phone) {
@@ -3694,14 +3695,14 @@ var _init = function (callback) {
             qrCode.autosubmit();
         }
     } else if (page.kind == "pc_09" || page.kind == "mobile_09") {
-        window.document.title = page.window_title + lang("ÃâÔğÉùÃ÷");
+        window.document.title = page.window_title + lang("å…è´£å£°æ˜");
         acForward.initialize();
     } else if (page.kind == "pc_20" || page.kind == "mobile_10") {
         adfldtype = "1004";
-        window.document.title = page.window_title + lang("¿ìËÙµÇÂ¼Ò³");
+        window.document.title = page.window_title + lang("å¿«é€Ÿç™»å½•é¡µ");
         $("[name=0MKKey11]").on("click", function () {
             if ($("[name=C1]").length > 0 && !$("[name=C1]")[0].checked) {
-                _alert(lang("ÇëÔÄ¶Á²¢Í¬Òâ¡¶ÃâÔğÉùÃ÷¡·"));
+                _alert(lang("è¯·é˜…è¯»å¹¶åŒæ„ã€Šå…è´£å£°æ˜ã€‹"));
                 return false;
             }
             event.preventDefault();
@@ -3709,7 +3710,7 @@ var _init = function (callback) {
             return false;
         });
     } else if (page.kind == "pc_29" || page.kind == "mobile_29") {
-        window.document.title = page.window_title + lang("ĞŞ¸ÄÃÜÂëÒ³");
+        window.document.title = page.window_title + lang("ä¿®æ”¹å¯†ç é¡µ");
         changePassword.init();
         acForward.initialize();
     } else if (page.kind == "pc_38" || page.kind == "mobile_38") {
