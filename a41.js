@@ -1,81 +1,82 @@
-/********************  ¹«ÓÃÅäÖÃ²ÎÊı  ********************/
+/********************  å…¬ç”¨é…ç½®å‚æ•°  ********************/
 var jsVersion = '4.1';
 
-var redirectLink = "";// µÇÂ¼ÖØ¶¨Ïò
+var redirectLink = "";// ç™»å½•é‡å®šå‘
 
-var rebackLink = "";//·µ»ØÖØ¶¨Ïò
+var rebackLink = "";//è¿”å›é‡å®šå‘
 
-var accountSuffix = "";// ÕËºÅºó×º
+var accountSuffix = "";// è´¦å·åç¼€
 
-var accountPrefix = 0;// ÊÇ·ñÌí¼ÓÕËºÅÇ°×º(0-²»Ìí¼Ó£»1-Ìí¼Ó)Ä¬ÈÏÌí¼ÓÕËºÅÇ°×º1
+var accountPrefix = 0;// æ˜¯å¦æ·»åŠ è´¦å·å‰ç¼€(0-ä¸æ·»åŠ ï¼›1-æ·»åŠ )é»˜è®¤æ·»åŠ è´¦å·å‰ç¼€1
 
-var enPerceive = 0;// ÊÇ·ñÖ§³Ö¿ìËÙµÇÂ¼(0-²»Ö§³Ö£»1-Ö§³Ö)
+var enPerceive = 0;// æ˜¯å¦æ”¯æŒå¿«é€Ÿç™»å½•(0-ä¸æ”¯æŒï¼›1-æ”¯æŒ)
 
-var customPerceive = 0;// ÊÇ·ñ¼ÇÂ¼mac (0-¼ÇÂ¼£»1-²»¼ÇÂ¼)
+var customPerceive = 0;// æ˜¯å¦è®°å½•mac (0-è®°å½•ï¼›1-ä¸è®°å½•)
 
-var enAdvert = 0;// ÊÇ·ñÏÔÊ¾¹ã¸æ(0-²»ÏÔÊ¾£»1-ÏÔÊ¾)
+var enAdvert = 0;// æ˜¯å¦æ˜¾ç¤ºå¹¿å‘Š(0-ä¸æ˜¾ç¤ºï¼›1-æ˜¾ç¤º)
 
-var advert_host = "http://127.0.0.1:9080";// ¹ã¸æÍ³¼Æ·şÎñÆ÷µØÖ·£¬ÀıÈç£ºhttp://192.168.0.1:9080
+var advert_host = "http://127.0.0.1:9080";// å¹¿å‘Šç»Ÿè®¡æœåŠ¡å™¨åœ°å€ï¼Œä¾‹å¦‚ï¼šhttp://192.168.0.1:9080
 
-var onlineMonitor = 1;//ÊÇ·ñÔÚÏß¼àÌı(0-9002¶Ë¿Ú¼àÌı£»1-ÔÚÏß½Ó¿Ú¼àÌı)
+var onlineMonitor = 1;//æ˜¯å¦åœ¨çº¿ç›‘å¬(0-9002ç«¯å£ç›‘å¬ï¼›1-åœ¨çº¿æ¥å£ç›‘å¬)
 
-var acLogout = 0;//¶àACÈÏÖ¤»·¾³ÏÂÍ¨¹ıºóÌ¨½Ó¿Ú×¢Ïú¹¦ÄÜ(0-Í£ÓÃ£¬1-radius×¢Ïú£¬2-ºóÌ¨×¢Ïú£©
+var acLogout = 0;//å¤šACè®¤è¯ç¯å¢ƒä¸‹é€šè¿‡åå°æ¥å£æ³¨é”€åŠŸèƒ½(0-åœç”¨ï¼Œ1-radiusæ³¨é”€ï¼Œ2-åå°æ³¨é”€ï¼‰
 
-var unBindMac = 0;//×¢ÏúÊ±Ê¹ÓÃ½â°ómacµØÖ·(1-Æô¶¯)
+var unBindMac = 0;//æ³¨é”€æ—¶ä½¿ç”¨è§£ç»‘macåœ°å€(1-å¯åŠ¨)
 
-var ispUnBindSuffix = 1;//ÔËÓªÉÌ½â°óÊ±ÎŞºó×º(1-Æô¶¯)
+var ispUnBindSuffix = 1;//è¿è¥å•†è§£ç»‘æ—¶æ— åç¼€(1-å¯åŠ¨)
 
-var findMac = 0;//1-ÆôÓÃBSÈ«ÒµÎñ½Ó¿Ú²éÑ¯(0-Ä¬ÈÏÄÚºË²éÑ¯)
+var findMac = 0;//1-å¯ç”¨BSå…¨ä¸šåŠ¡æ¥å£æŸ¥è¯¢(0-é»˜è®¤å†…æ ¸æŸ¥è¯¢)
 
-var radiusIP = "";//RADIUS·şÎñÆ÷IP
+var radiusIP = "";//RADIUSæœåŠ¡å™¨IP
 
-var registerMode = 0;//¿ª»§·½Ê½(0-Ë½ÓĞÔÆ¿ª»§£¬1-BS¿ª»§£¬2-¾Æµê°æ£¬3-2188·Ã¿ÍÏµÍ³, 4-ÆÕ½ÌÏµÍ³)
+var registerMode = 0;//å¼€æˆ·æ–¹å¼(0-ç§æœ‰äº‘å¼€æˆ·ï¼Œ1-BSå¼€æˆ·ï¼Œ2-é…’åº—ç‰ˆï¼Œ3-2188è®¿å®¢ç³»ç»Ÿ, 4-æ™®æ•™ç³»ç»Ÿ)
 
-var changePassMode = 0;//ĞŞ¸ÄÃÜÂë·½Ê½(0-eportalÒ³Ãæ£¬1-×Ô·şÎñ(Ë½ÓĞÔÆ²»Ö§³Ö))
+var changePassMode = 0;//ä¿®æ”¹å¯†ç æ–¹å¼(0-eportalé¡µé¢ï¼Œ1-è‡ªæœåŠ¡(ç§æœ‰äº‘ä¸æ”¯æŒ))
 
-var cvlanid = "4095";//°ó¶¨CVLANID(ÓÃ»§Ê×´ÎµÇÂ½Ê±Ç¿ÖÆĞŞ¸ÄÃÜÂë)
+var cvlanid = "4095";//ç»‘å®šCVLANID(ç”¨æˆ·é¦–æ¬¡ç™»é™†æ—¶å¼ºåˆ¶ä¿®æ”¹å¯†ç )
 
-var enableR3 = 0; // ÊÇ·ñÆôÓÃ r3 ²ÎÊıÇø·Ö¶àÔËÓªÉÌ
+var enableR3 = 0; // æ˜¯å¦å¯ç”¨ r3 å‚æ•°åŒºåˆ†å¤šè¿è¥å•†
 
-var webPayUrl = "http://127.0.0.1:8080/WebPay/toRecharge"; // ³äÖµÁ´½Ó
+var webPayUrl = "http://127.0.0.1:8080/WebPay/toRecharge"; // å……å€¼é“¾æ¥
 
-var isLang = 0; //ÊÇ·ñÆô¶¯ÖĞÓ¢ÎÄ 1-ÆôÓÃ 0-¹Ø±Õ (ÒÑ·ÏÆú)
+var isLang = 0; //æ˜¯å¦å¯åŠ¨ä¸­è‹±æ–‡ 1-å¯ç”¨ 0-å…³é—­ (å·²åºŸå¼ƒ)
 
-var ISRedirect = 1; //ÊÇ·ñµÇÂ¼ÖØ¶¨Ïò 1-ÆôÓÃ 0-¹Ø±Õ
+var ISRedirect = 1; //æ˜¯å¦ç™»å½•é‡å®šå‘ 1-å¯ç”¨ 0-å…³é—­
 
-var enbaleEduroamVerify = 0; // ÅÔÂ·ÆôÓÃ eduroam ÉóºËÄ£Ê½
+var enbaleEduroamVerify = 0; // æ—è·¯å¯ç”¨ eduroam å®¡æ ¸æ¨¡å¼
 
-var duodianAppHidden = 0; //ÊÇ·ñÒş²Ø¶ßµãĞÅÏ¢ 1-Òş²Ø 0-²»Òş²Ø
+var duodianAppHidden = 0; //æ˜¯å¦éšè—å“†ç‚¹ä¿¡æ¯ 1-éšè— 0-ä¸éšè—
 
-var storeExpireTime = 86400; //»º´æ¹ıÆÚÊ±¼ä,µ¥Î»-Ãë
+var storeExpireTime = 86400; //ç¼“å­˜è¿‡æœŸæ—¶é—´,å•ä½-ç§’
 
-var ipv6Delay = 2000; //»ñÈ¡ipv6Ê§°ÜÊ±£¬ÑÓ³ÙÊ±¼ä£¬µ¥Î»-ºÁÃë
+var ipv6Delay = 2000; //è·å–ipv6å¤±è´¥æ—¶ï¼Œå»¶è¿Ÿæ—¶é—´ï¼Œå•ä½-æ¯«ç§’
 
-var enablev6 = 0; // Í¨¹ıÅĞ¶Ï·½°¸»òÒ³ÃæµÄÅäÖÃ£¬×îÖÕ¾ö¶¨ÊÇ·ñÆôÓÃ ipv6Í¨¹ıipv4Áª¶¯µÇÂ¼
+var enablev6 = 0; // é€šè¿‡åˆ¤æ–­æ–¹æ¡ˆæˆ–é¡µé¢çš„é…ç½®ï¼Œæœ€ç»ˆå†³å®šæ˜¯å¦å¯ç”¨ ipv6é€šè¿‡ipv4è”åŠ¨ç™»å½•
 
-var checkipv6 = 0; // 0-²»¼ì²é£»1-¼ì²é²»µ½ÖÕÖ¹ÈÏÖ¤£»2-¼ì²é²»µ½¼ÇÂ¼ÈÕÖ¾
+var checkipv6 = 0; // 0-ä¸æ£€æŸ¥ï¼›1-æ£€æŸ¥ä¸åˆ°ç»ˆæ­¢è®¤è¯ï¼›2-æ£€æŸ¥ä¸åˆ°è®°å½•æ—¥å¿—
 
-var enableHttps = 0; // 0-²»ÆôÓÃhttps 1ÆôÓÃ https
+var enableHttps = 0; // 0-ä¸å¯ç”¨https 1å¯ç”¨ https
 
-var epHTTPPort = 801; // eportal http ¶Ë¿Ú
+var epHTTPPort = 801; // eportal http ç«¯å£
 
-var enHTTPSPort = 802; // eportal https ¶Ë¿Ú
+var enHTTPSPort = 802; // eportal https ç«¯å£
 
-var domainName = ''; // ÓòÃû
+var domainName = ''; // åŸŸå
 
-var isJSMin = 1; // 0-²»Ñ¹Ëõ·½°¸js 1 Ñ¹Ëõ·½°¸js
+var isJSMin = 1; // 0-ä¸å‹ç¼©æ–¹æ¡ˆjs 1 å‹ç¼©æ–¹æ¡ˆjs
 
-var checkOnlineMethod = 0; // ¼ì²âÓÃ»§ÔÚÏß×´Ì¬·½Ê½ 0-ÄÚºË£¬1-Radius
+var checkOnlineMethod = 0; // æ£€æµ‹ç”¨æˆ·åœ¨çº¿çŠ¶æ€æ–¹å¼ 0-å†…æ ¸ï¼Œ1-Radius
 
-var ioMode = 0; // 0-Radius ÃèÊö£ºIO 1-ÄÚºËÃüÁî£ºras_iomode2
+var ioMode = 0; // 0-Radius æè¿°ï¼šIO 1-å†…æ ¸å‘½ä»¤ï¼šras_iomode2
 
 if (enableHttps === 1) {
-  // 2166 ÉèÖÃac ±ğÃû¿ÉÒÔÖ±½Óµ¯ÓòÃûportalÒ³
-  // ÆôÓÃÁËhttps £¬µ«µ±Ç°·ÃÎÊµÄ²»ÊÇ https£¬ÔòÌø×ªµ½ https £¬Èç¹ûÓĞÉèÖÃÓòÃû£¬µ«µ±Ç°·ÃÎÊµÄ²»ÊÇÓòÃû£¬Ò²Ìø×ªµ½ÓòÃû·ÃÎÊ
+  // 2166 è®¾ç½®ac åˆ«åå¯ä»¥ç›´æ¥å¼¹åŸŸåportalé¡µ
+  // å¯ç”¨äº†https ï¼Œä½†å½“å‰è®¿é—®çš„ä¸æ˜¯ httpsï¼Œåˆ™è·³è½¬åˆ° https ï¼Œå¦‚æœæœ‰è®¾ç½®åŸŸåï¼Œä½†å½“å‰è®¿é—®çš„ä¸æ˜¯åŸŸåï¼Œä¹Ÿè·³è½¬åˆ°åŸŸåè®¿é—®
   if (window.location.protocol !== 'https:' || (domainName && window.location.hostname != domainName)) {
     window.location = 'https://' + (domainName || window.location.hostname) + window.location.pathname + window.location.search;
   }
 }
+
 
 var ep_port = window.location.protocol === 'http:' ? epHTTPPort : enHTTPSPort;
 var page = {
@@ -96,61 +97,61 @@ var page = {
   timer: null,
   advert_time_79: 0,
   window_title: '',
-  //Î¢ĞÅÕËºÅ
+  //å¾®ä¿¡è´¦å·
   com_username: '',
   com_password: '',
-  //¹«¹²ÕËºÅ
+  //å…¬å…±è´¦å·
   common_username: '',
   common_password: '',
-  //¶¤¶¤ÁÙÊ±ÕËºÅ
+  //é’‰é’‰ä¸´æ—¶è´¦å·
   dingtalk_username: '',
   dingtalk_password: '',
   dingtalk_app_id: '',
   dingtalk_login_type: 0,
-  // ÔÚÏß¼àÌı½Ó¿Ú 0-ÄÚºË 9002 ¶Ë¿Ú 1-Radius ²éÑ¯
+  // åœ¨çº¿ç›‘å¬æ¥å£ 0-å†…æ ¸ 9002 ç«¯å£ 1-Radius æŸ¥è¯¢
   online_monitor: 0,
-  // ÊÇ·ñÆôÓÃ pppoe ´ú²¦£¬ÈÏÖ¤µÄÊ±ºò´« r3 ²ÎÊı
+  // æ˜¯å¦å¯ç”¨ pppoe ä»£æ‹¨ï¼Œè®¤è¯çš„æ—¶å€™ä¼  r3 å‚æ•°
   enable_r3: 0,
-  // ÃÜÂë½ØÈ¡
+  // å¯†ç æˆªå–
   password_cut: 0,
-  // MD5 ¼ÓÃÜÈÏÖ¤
+  // MD5 åŠ å¯†è®¤è¯
   en_md5: 0,
-  // ä¯ÀÀÆ÷Ì½²âÖØ¶¨ÏòÁĞ±í
+  // æµè§ˆå™¨æ¢æµ‹é‡å®šå‘åˆ—è¡¨
   visit_blacklist: [],
-  // ³É¹¦Ò³/×¢ÏúÒ³ĞèÒªÏÔÊ¾µÄĞÅÏ¢
+  // æˆåŠŸé¡µ/æ³¨é”€é¡µéœ€è¦æ˜¾ç¤ºçš„ä¿¡æ¯
   user_info: '',
   online_info: '',
   logon_info: '',
   recharge_info: '',
-  // ³É¹¦Ò³/×¢ÏúÒ³ÏÔÊ¾ĞÅÏ¢¶ÔÓ¦±êÇ©
+  // æˆåŠŸé¡µ/æ³¨é”€é¡µæ˜¾ç¤ºä¿¡æ¯å¯¹åº”æ ‡ç­¾
   user_info_lang: '',
   online_info_lang: '',
   logon_info_lang: '',
   recharge_info_lang: '',
   edit_info_lang: [],
-  //ÆôÓÃĞÂ°æÈ«ÒµÎñ½Ó¿Ú 1-ÆôÓÃ
+  //å¯ç”¨æ–°ç‰ˆå…¨ä¸šåŠ¡æ¥å£ 1-å¯ç”¨
   enable_new_drcom_srv: '0',
   run: function (_kind) {
     var me = this;
     me._kind = _kind;
-    // ĞèÓÃµ½store.get»ñÈ¡ÖĞÓ¢ÎÄ£¬ËùÒÔÌáÈ¡³öÀ´µ¥¶ÀÓÅÏÈ¼ÓÔØ
+    // éœ€ç”¨åˆ°store.getè·å–ä¸­è‹±æ–‡ï¼Œæ‰€ä»¥æå–å‡ºæ¥å•ç‹¬ä¼˜å…ˆåŠ è½½
     util._load('js', page.page_asset + 'js/store.js', function () {
-      // ³õÊ¼»¯ÖÕ¶Ë²ÎÊı£¬»ñÈ¡ ip¡¢macµÈĞÅÏ¢
+      // åˆå§‹åŒ–ç»ˆç«¯å‚æ•°ï¼Œè·å– ipã€macç­‰ä¿¡æ¯
       term.init(function () {
-        // Ê×Ò³¼ì²éÊÇ·ñĞèÒªÌø×ªµ½·Ã¿ÍÉ¨ÂëÒ³Ãæ£¬Ö÷ÒªÓÃÓÚ·Ã¿ÍÅÔÂ·É¨Âë
+        // é¦–é¡µæ£€æŸ¥æ˜¯å¦éœ€è¦è·³è½¬åˆ°è®¿å®¢æ‰«ç é¡µé¢ï¼Œä¸»è¦ç”¨äºè®¿å®¢æ—è·¯æ‰«ç 
         if (!_kind) {
           if (me.checkIsGroupScanQRCode()) return;
         }
         me.kind = term.type == 2 ? 'mobile' : 'pc';
-        // »ñÈ¡Ò³ÃæÅäÖÃµÈĞÅÏ¢
+        // è·å–é¡µé¢é…ç½®ç­‰ä¿¡æ¯
         me.getPageInfo(function () {
           if (me._kind == 'eduroam') {
-            // eduroam Ò³Ãæ£¬¼ì²éÓÃ»§×´Ì¬£¬ÒÑÉóºËÖ±½ÓµÇÂ¼£¬Î´ÉóºËµÄÏÔÊ¾ÉóºËÒ³£¬²¢¶¨Ê±¼ì²éÊÇ·ñÉóºËÁË
+            // eduroam é¡µé¢ï¼Œæ£€æŸ¥ç”¨æˆ·çŠ¶æ€ï¼Œå·²å®¡æ ¸ç›´æ¥ç™»å½•ï¼Œæœªå®¡æ ¸çš„æ˜¾ç¤ºå®¡æ ¸é¡µï¼Œå¹¶å®šæ—¶æ£€æŸ¥æ˜¯å¦å®¡æ ¸äº†
             me.checkUserStatusAndLoginByIP(true);
             return;
           }
-          // ÓĞÖ¸¶¨ÒªäÖÈ¾µÄÒ³Ãæ£¨´ø_kind£©£¬¾ÍÉèÖÃ kind£¬
-          // Ã»ÓĞÖ¸¶¨¾Í²éÑ¯×´Ì¬£¬¿´ÊÇ·ñÔÚÏß£¬ÔÙÉèÖÃ kind £¬È»ºó¸ù¾İ kind ¼ÓÔØ¶ÔÓ¦Ò³ÃæÄÚÈİ
+          // æœ‰æŒ‡å®šè¦æ¸²æŸ“çš„é¡µé¢ï¼ˆå¸¦_kindï¼‰ï¼Œå°±è®¾ç½® kindï¼Œ
+          // æ²¡æœ‰æŒ‡å®šå°±æŸ¥è¯¢çŠ¶æ€ï¼Œçœ‹æ˜¯å¦åœ¨çº¿ï¼Œå†è®¾ç½® kind ï¼Œç„¶åæ ¹æ® kind åŠ è½½å¯¹åº”é¡µé¢å†…å®¹
           if (!me._kind) {
             me.checkStatus();
           } else {
@@ -162,7 +163,7 @@ var page = {
       });
     });
   },
-  // »ñÈ¡Ò³ÃæÏà¹ØµÄ²ÎÊıÅäÖÃµÈ
+  // è·å–é¡µé¢ç›¸å…³çš„å‚æ•°é…ç½®ç­‰
   getPageInfo: function (next) {
     var me = this;
     var url = page.portal_api + 'page/loadConfig';
@@ -181,55 +182,55 @@ var page = {
       data: data,
       success: function (json) {
         /**
-         * Ò³Ãæ²ÎÊı
+         * é¡µé¢å‚æ•°
          */
-        me.index = json.data.page_index || '';                               // Ò³ÃæË÷Òı
-        me.name = json.data.program_index || ''; 	                        // ·½°¸Ë÷Òı
-        me.page_url = me.eportal + 'extern/' + me.name + '/' + me.index + '/';  // Ò³Ãæ×ÊÔ´µØÖ·
-        me.login_method = parseInt(json.data.login_method) || 0;		            // ÈÏÖ¤·½Ê½
-        me.redirectLink = json.data.redirect_url || '';	                            // µÇÂ¼ÖØ¶¨ÏòµØÖ·
-        me.window_title = json.data.window_title || '';                             // Ò³Ãæ±êÌâÇ°×º
-        me.advert_time_79 = parseInt(json.data.advert_time) || 0;                     // a79 Ò³Ãæ¹ã¸æÊ±¼ä
-        // me.check_read        = parseInt(json.data.check_read) || 1;                      // Ã»ÓĞÓÃµ½£¿£¿
-        me.online_monitor = parseInt(json.data.online_monitor) || 0;                  // ÔÚÏß¼àÌı
-        me.enable_r3 = parseInt(json.data.enable_r3) || 0;                       // ´®½Ó pppoe ´ú²¦
-        me.password_cut = parseInt(json.data.password_cut) || 0;                    // ÃÜÂë½ØÈ¡
-        me.en_md5 = parseInt(json.data.en_md5) || 0;                          // MD5 ¼ÓÃÜÈÏÖ¤
-        me.visit_blacklist = json.data.visit_blacklist || [];                          // ä¯ÀÀÆ÷Ì½²âÖØ¶¨ÏòÁĞ±í
-        me.edit_info_lang = json.data.edit_info_lang || [];                           // ³É¹¦Ò³ÓÃ»§ĞÅÏ¢ÖĞÓ¢ÎÄ
-        me.user_info = json.data.user_info || '';                                // ³É¹¦Ò³/×¢ÏúÒ³ĞèÒªÏÔÊ¾µÄÓÃ»§»ù±¾ĞÅÏ¢
-        me.online_info = json.data.online_info || '';                              // ³É¹¦Ò³/×¢ÏúÒ³ĞèÒªÏÔÊ¾µÄÔÚÏß¼ÇÂ¼ĞÅÏ¢
-        me.logon_info = json.data.logon_info || '';                               // ³É¹¦Ò³/×¢ÏúÒ³ĞèÒªÏÔÊ¾µÄµÇÂ¼¼ÇÂ¼ĞÅÏ¢
-        me.recharge_info = json.data.recharge_info || '';                            // ³É¹¦Ò³/×¢ÏúÒ³ĞèÒªÏÔÊ¾µÄÊÕ·Ñ¼ÇÂ¼ĞÅÏ¢
-        me.user_info_lang = json.data.user_info_lang || '';                           // ³É¹¦Ò³/×¢ÏúÒ³ĞèÒªÏÔÊ¾µÄ»ù±¾ĞÅÏ¢±êÇ©
-        me.online_info_lang = json.data.online_info_lang || '';                         // ³É¹¦Ò³/×¢ÏúÒ³ĞèÒªÏÔÊ¾µÄÔÚÏß¼ÇÂ¼±êÇ©
-        me.logon_info_lang = json.data.logon_info_lang || '';                          // ³É¹¦Ò³/×¢ÏúÒ³ĞèÒªÏÔÊ¾µÄµÇÂ¼¼ÇÂ¼±êÇ©
-        me.recharge_info_lang = json.data.recharge_info_lang || '';                       // ³É¹¦Ò³/×¢ÏúÒ³ĞèÒªÏÔÊ¾µÄÊÕ·Ñ¼ÇÂ¼±êÇ©
-        me.enable_new_drcom_srv = json.data.enable_new_drcom_srv || '0';                    // ÆôÓÃĞÂ°æÈ«ÒµÎñ½Ó¿Ú 1-ÆôÓÃ
-        // ¹«¹²ÕËºÅ
+        me.index = json.data.page_index || '';                               // é¡µé¢ç´¢å¼•
+        me.name = json.data.program_index || ''; 	                        // æ–¹æ¡ˆç´¢å¼•
+        me.page_url = me.eportal + 'extern/' + me.name + '/' + me.index + '/';  // é¡µé¢èµ„æºåœ°å€
+        me.login_method = parseInt(json.data.login_method) || 0;		            // è®¤è¯æ–¹å¼
+        me.redirectLink = json.data.redirect_url || '';	                            // ç™»å½•é‡å®šå‘åœ°å€
+        me.window_title = json.data.window_title || '';                             // é¡µé¢æ ‡é¢˜å‰ç¼€
+        me.advert_time_79 = parseInt(json.data.advert_time) || 0;                     // a79 é¡µé¢å¹¿å‘Šæ—¶é—´
+        // me.check_read        = parseInt(json.data.check_read) || 1;                      // æ²¡æœ‰ç”¨åˆ°ï¼Ÿï¼Ÿ
+        me.online_monitor = parseInt(json.data.online_monitor) || 0;                  // åœ¨çº¿ç›‘å¬
+        me.enable_r3 = parseInt(json.data.enable_r3) || 0;                       // ä¸²æ¥ pppoe ä»£æ‹¨
+        me.password_cut = parseInt(json.data.password_cut) || 0;                    // å¯†ç æˆªå–
+        me.en_md5 = parseInt(json.data.en_md5) || 0;                          // MD5 åŠ å¯†è®¤è¯
+        me.visit_blacklist = json.data.visit_blacklist || [];                          // æµè§ˆå™¨æ¢æµ‹é‡å®šå‘åˆ—è¡¨
+        me.edit_info_lang = json.data.edit_info_lang || [];                           // æˆåŠŸé¡µç”¨æˆ·ä¿¡æ¯ä¸­è‹±æ–‡
+        me.user_info = json.data.user_info || '';                                // æˆåŠŸé¡µ/æ³¨é”€é¡µéœ€è¦æ˜¾ç¤ºçš„ç”¨æˆ·åŸºæœ¬ä¿¡æ¯
+        me.online_info = json.data.online_info || '';                              // æˆåŠŸé¡µ/æ³¨é”€é¡µéœ€è¦æ˜¾ç¤ºçš„åœ¨çº¿è®°å½•ä¿¡æ¯
+        me.logon_info = json.data.logon_info || '';                               // æˆåŠŸé¡µ/æ³¨é”€é¡µéœ€è¦æ˜¾ç¤ºçš„ç™»å½•è®°å½•ä¿¡æ¯
+        me.recharge_info = json.data.recharge_info || '';                            // æˆåŠŸé¡µ/æ³¨é”€é¡µéœ€è¦æ˜¾ç¤ºçš„æ”¶è´¹è®°å½•ä¿¡æ¯
+        me.user_info_lang = json.data.user_info_lang || '';                           // æˆåŠŸé¡µ/æ³¨é”€é¡µéœ€è¦æ˜¾ç¤ºçš„åŸºæœ¬ä¿¡æ¯æ ‡ç­¾
+        me.online_info_lang = json.data.online_info_lang || '';                         // æˆåŠŸé¡µ/æ³¨é”€é¡µéœ€è¦æ˜¾ç¤ºçš„åœ¨çº¿è®°å½•æ ‡ç­¾
+        me.logon_info_lang = json.data.logon_info_lang || '';                          // æˆåŠŸé¡µ/æ³¨é”€é¡µéœ€è¦æ˜¾ç¤ºçš„ç™»å½•è®°å½•æ ‡ç­¾
+        me.recharge_info_lang = json.data.recharge_info_lang || '';                       // æˆåŠŸé¡µ/æ³¨é”€é¡µéœ€è¦æ˜¾ç¤ºçš„æ”¶è´¹è®°å½•æ ‡ç­¾
+        me.enable_new_drcom_srv = json.data.enable_new_drcom_srv || '0';                    // å¯ç”¨æ–°ç‰ˆå…¨ä¸šåŠ¡æ¥å£ 1-å¯ç”¨
+        // å…¬å…±è´¦å·
         /*        me.common_username      = json.data.common_username || '';
                 me.common_password      = json.data.common_password || '';
-                // ¶¤¶¤ÕËºÅ
+                // é’‰é’‰è´¦å·
                 me.dingtalk_username    = json.data.dingtalk_username || '';
                 me.dingtalk_password    = json.data.dingtalk_password || '';*/
         me.dingtalk_app_id = json.data.dingtalk_app_id || '';
         me.dingtalk_login_type = json.data.dingtalk_login_type || 0;
 
         /**
-         * ·½°¸²ÎÊı
+         * æ–¹æ¡ˆå‚æ•°
          */
-        rebackLink = '';		                        // ·µ»ØÖØ¶¨ÏòµØÖ·
-        redirectLink = '';		                    // µÇÂ¼ÖØ¶¨ÏòµØÖ·
-        me.redirectLogout = parseInt(json.data.redirect_logout) || 0;		            // Ç¿ÖÆÌø×ª×¢ÏúÒ³
-        term.suffix = json.data.account_suffix || '';                           // ÕËºÅºó×º
+        rebackLink = '';		                        // è¿”å›é‡å®šå‘åœ°å€
+        redirectLink = '';		                    // ç™»å½•é‡å®šå‘åœ°å€
+        me.redirectLogout = parseInt(json.data.redirect_logout) || 0;		            // å¼ºåˆ¶è·³è½¬æ³¨é”€é¡µ
+        term.suffix = json.data.account_suffix || '';                           // è´¦å·åç¼€
         cvlanid = json.data.cvlan_id || '4095';
-        enPerceive = parseInt(json.data.en_perceive) || 0;		                // 0-²»ÎŞ¸ĞÖª 1 ÏÔÊ¾¿ìËÙµÇÂ¼Ò³ 2 Ö±½ÓÎŞ¸ĞÖª
+        enPerceive = parseInt(json.data.en_perceive) || 0;		                // 0-ä¸æ— æ„ŸçŸ¥ 1 æ˜¾ç¤ºå¿«é€Ÿç™»å½•é¡µ 2 ç›´æ¥æ— æ„ŸçŸ¥
         customPerceive = parseInt(json.data.custom_perceive) || 0;
-        enAdvert = parseInt(json.data.en_advert) || 0;                       // ¹ã¸æÍ³¼Æ 0 ½ûÓÃ 1 ÆôÓÃ
-        advert_host = json.data.advert_host || '';		                        // ¹ã¸æÍ³¼Æ·şÎñÆ÷µØÖ·
+        enAdvert = parseInt(json.data.en_advert) || 0;                       // å¹¿å‘Šç»Ÿè®¡ 0 ç¦ç”¨ 1 å¯ç”¨
+        advert_host = json.data.advert_host || '';		                        // å¹¿å‘Šç»Ÿè®¡æœåŠ¡å™¨åœ°å€
         //      onlineMonitor           = parseInt(json.data.online_monitor) || 1;
-        unBindMac = parseInt(json.data.un_bind_mac) || 0;                     // ±¾»ú×¢ÏúÊ±½â°óMAC     
-        ispUnBindSuffix = parseInt(json.data.isp_unbind_suffix) || 0;               // ÔËÓªÉÌ½â°óÊ±ÎŞºó×º
+        unBindMac = parseInt(json.data.un_bind_mac) || 0;                     // æœ¬æœºæ³¨é”€æ—¶è§£ç»‘MAC     
+        ispUnBindSuffix = parseInt(json.data.isp_unbind_suffix) || 0;               // è¿è¥å•†è§£ç»‘æ—¶æ— åç¼€
         findMac = parseInt(json.data.find_mac) || 0;
         registerMode = parseInt(json.data.register_mode) || 0;
         changePassMode = parseInt(json.data.change_pass_mode) || 0;
@@ -238,11 +239,11 @@ var page = {
         storeExpireTime = parseInt(json.data.store_expire_time) || 0;
         duodianAppHidden = parseInt(json.data.duodian_app_hide) || 0;
 
-        ISRedirect = parseInt(json.data.is_redirect) === 0 ? 0 : 1;  // ÊÇ·ñÖØ¶¨Ïò
-        // ÅÔÂ·
-        enbaleEduroamVerify = parseInt(json.data.enbale_eduroam_verify) || 0; // ÅÔÂ·ÆôÓÃ eduroam ÉóºËÄ£Ê½
-        accountPrefix = parseInt(json.data.account_prefix) || 0;	      // ÊÇ·ñÌí¼ÓÕËºÅÇ°×º(0-²»Ìí¼Ó£»1-Ìí¼Ó)Ä¬ÈÏÌí¼ÓÕËºÅÇ°×º	
-        ioMode = parseInt(json.data.io_mode) || 0;               // µÇÂ¼Çø·ÖÄÚÍâÍø·½Ê½£º0-radiusÃèÊö£ºIO 1-ÄÚºËÃüÁî£ºras_iomode2
+        ISRedirect = parseInt(json.data.is_redirect) === 0 ? 0 : 1;  // æ˜¯å¦é‡å®šå‘
+        // æ—è·¯
+        enbaleEduroamVerify = parseInt(json.data.enbale_eduroam_verify) || 0; // æ—è·¯å¯ç”¨ eduroam å®¡æ ¸æ¨¡å¼
+        accountPrefix = parseInt(json.data.account_prefix) || 0;	      // æ˜¯å¦æ·»åŠ è´¦å·å‰ç¼€(0-ä¸æ·»åŠ ï¼›1-æ·»åŠ )é»˜è®¤æ·»åŠ è´¦å·å‰ç¼€	
+        ioMode = parseInt(json.data.io_mode) || 0;               // ç™»å½•åŒºåˆ†å†…å¤–ç½‘æ–¹å¼ï¼š0-radiusæè¿°ï¼šIO 1-å†…æ ¸å‘½ä»¤ï¼šras_iomode2
         acLogout = parseInt(json.data.ac_logout) || 0;
         enableHttps = parseInt(json.data.enable_https) || 0;
         domainName = json.data.domain_name || '';
@@ -257,7 +258,7 @@ var page = {
       }
     });
   },
-  // ÏòÄÚºËÇëÇó£¬¼ì²éÓÃ»§×´Ì¬ result: 0 ²»ÔÚÏß£¬1 ÔÚÏß
+  // å‘å†…æ ¸è¯·æ±‚ï¼Œæ£€æŸ¥ç”¨æˆ·çŠ¶æ€ result: 0 ä¸åœ¨çº¿ï¼Œ1 åœ¨çº¿
   checkStatus: function () {
     var me = this;
     var url = me.path + 'chkstatus';
@@ -266,12 +267,12 @@ var page = {
     if (checkOnlineMethod == 1) {
       url = page.portal_api + 'online_list';
       data = {
-        'user_account': 'drcom', 		// ÈÏÖ¤ÕËºÅ(Ëæ±ãÌîÖµ£¬±£Ö¤²»Îª¿Õ¼´¿É)
-        'user_password': '123', 		// ÈÏÖ¤ÃÜÂë(Ëæ±ãÌîÖµ£¬±£Ö¤²»Îª¿Õ¼´¿É)
-        'wlan_user_mac': term.mac,	// ÖÕ¶ËMAC
-        'wlan_user_ip': term.ip,		// ÖÕ¶ËIP
-        'curr_user_ip': term.ip,		// ÖÕ¶ËIP
-        'jsVersion': jsVersion		  // Ò³ÃæÊ¹ÓÃ°æ±¾
+        'user_account': 'drcom', 		// è®¤è¯è´¦å·(éšä¾¿å¡«å€¼ï¼Œä¿è¯ä¸ä¸ºç©ºå³å¯)
+        'user_password': '123', 		// è®¤è¯å¯†ç (éšä¾¿å¡«å€¼ï¼Œä¿è¯ä¸ä¸ºç©ºå³å¯)
+        'wlan_user_mac': term.mac,	// ç»ˆç«¯MAC
+        'wlan_user_ip': term.ip,		// ç»ˆç«¯IP
+        'curr_user_ip': term.ip,		// ç»ˆç«¯IP
+        'jsVersion': jsVersion		  // é¡µé¢ä½¿ç”¨ç‰ˆæœ¬
       };
     }
 
@@ -281,20 +282,20 @@ var page = {
       time: 10000,
       success: function (json) {
         if ('undefined' != typeof (json.ss4) && json.ss4 != '000000000000' && json.ss4 != '') {
-          // ÓÅÏÈÒÔurlÉÏÃæµÄMacÎª×¼
+          // ä¼˜å…ˆä»¥urlä¸Šé¢çš„Macä¸ºå‡†
           term.mac = (term.mac == '000000000000' || term.mac == '111111111111') ? json.ss4 : term.mac;
         }
-        // ²»ÔÚÏß£¬ÊÇ·ñÆôÓÃÎŞ¸ĞÖª
+        // ä¸åœ¨çº¿ï¼Œæ˜¯å¦å¯ç”¨æ— æ„ŸçŸ¥
         if (json.result == 0 && parseInt(enPerceive) !== 0) {
           me.checkMac();
           return false;
         }
-        // ÔÚÏß(´Ë´¦´úÂë´æÒÉ)
+        // åœ¨çº¿(æ­¤å¤„ä»£ç å­˜ç–‘)
         if (json.result == 1) {
           json.uid && (term.account = json.uid);
           term.online = json;
           me.kind = term.type == 2 ? 'mobile_31' : 'pc_1';
-          // Èç¹ûÆôÓÃ ÅÔÂ·eduroamÉóºË£¬²¢ÇÒÕËºÅÀï´øÓĞ @µÄ£¬Ôòµ÷ÓÃºóÌ¨½Ó¿Ú²éÑ¯ÊÇ·ñĞèÒªÉóºË
+          // å¦‚æœå¯ç”¨ æ—è·¯eduroamå®¡æ ¸ï¼Œå¹¶ä¸”è´¦å·é‡Œå¸¦æœ‰ @çš„ï¼Œåˆ™è°ƒç”¨åå°æ¥å£æŸ¥è¯¢æ˜¯å¦éœ€è¦å®¡æ ¸
           if (enbaleEduroamVerify == 1 && json.uid.indexOf('@') != -1) {
             me.checkUserStatusAndLoginByIP(true);
             return;
@@ -307,7 +308,7 @@ var page = {
         if (checkOnlineMethod == 1) {
           me.firstRender();
         } else {
-          document.getElementsByTagName('body')[0].innerHTML = 'ÄÚºË½Ó¿Ú²»¿ÉÓÃ£¬Çë¼ì²éÄÚºËÃüÁî¸úÄÚºË°æ±¾£¡';
+          document.getElementsByTagName('body')[0].innerHTML = 'å†…æ ¸æ¥å£ä¸å¯ç”¨ï¼Œè¯·æ£€æŸ¥å†…æ ¸å‘½ä»¤è·Ÿå†…æ ¸ç‰ˆæœ¬ï¼';
         }
       }
     });
@@ -327,13 +328,13 @@ var page = {
     data.wlan_user_mac = term.mac;
     data.wlan_ac_ip = term.wlanacip;
     data.wlan_ac_name = term.wlanacname;
-    // 0-²»ÎŞ¸ĞÖª 1 ÏÔÊ¾¿ìËÙµÇÂ¼Ò³ 2 Ö±½ÓÎŞ¸ĞÖª
-    data.data_format = parseInt(enPerceive) === 2 ? 2 : 0; // 2 ÎŞ¸ĞÖªµÇÂ¼  0 ·µ»ØÎŞ¸ĞÖª×´Ì¬
+    // 0-ä¸æ— æ„ŸçŸ¥ 1 æ˜¾ç¤ºå¿«é€Ÿç™»å½•é¡µ 2 ç›´æ¥æ— æ„ŸçŸ¥
+    data.data_format = parseInt(enPerceive) === 2 ? 2 : 0; // 2 æ— æ„ŸçŸ¥ç™»å½•  0 è¿”å›æ— æ„ŸçŸ¥çŠ¶æ€
     data.suffix = term.suffix;
     data.ssid = term.ssid;
-    // wifidogÎŞ¸ĞÖª¹¦ÄÜ
+    // wifidogæ— æ„ŸçŸ¥åŠŸèƒ½
     if (page.login_method == 14) {
-      data.rtype = 0; // 0-ÆÕÍ¨ÈÏÖ¤ 1-Î¢ĞÅÈÏÖ¤
+      data.rtype = 0; // 0-æ™®é€šè®¤è¯ 1-å¾®ä¿¡è®¤è¯
       data.gw_port = term.gw_port;
       data.gw_address = term.gw_address;
       data.gw_id = term.gw_id;
@@ -342,8 +343,8 @@ var page = {
       url: url,
       data: data,
       success: function (json) {
-        if (json.result == 1) { // ÒÑÔÚÏß»òÖ±½ÓÎŞ¸ĞÖªµÇÂ¼³É¹¦ÏÔÊ¾³É¹¦Ò³
-          // wifidogÈÏÖ¤Ê±£¬ÓÉºóÌ¨Éú³Éurl£¬¹©Ò³ÃæÌø×ªÈÏÖ¤
+        if (json.result == 1) { // å·²åœ¨çº¿æˆ–ç›´æ¥æ— æ„ŸçŸ¥ç™»å½•æˆåŠŸæ˜¾ç¤ºæˆåŠŸé¡µ
+          // wifidogè®¤è¯æ—¶ï¼Œç”±åå°ç”Ÿæˆurlï¼Œä¾›é¡µé¢è·³è½¬è®¤è¯
           if (page.login_method == 14 && typeof (json.auth_url) != 'undefined') {
             window.location.href = json.auth_url;
             return false;
@@ -352,9 +353,9 @@ var page = {
           if (typeof (json.account) != 'undefined') {
             term.account = json.account;
           }
-        } else if (json.result == 10) { // ÏÔÊ¾¿ìËÙµÇÂ¼Ò³
+        } else if (json.result == 10) { // æ˜¾ç¤ºå¿«é€Ÿç™»å½•é¡µ
           me.kind = term.type == 2 ? 'mobile_10' : 'pc_20';
-        } else { // ¼ì²âÒì³£»òÎ´°ó¶¨MACÏÔÊ¾ÈÏÖ¤Ò³
+        } else { // æ£€æµ‹å¼‚å¸¸æˆ–æœªç»‘å®šMACæ˜¾ç¤ºè®¤è¯é¡µ
           me.kind = term.type == 2 ? 'mobile' : 'pc';
         }
         me.firstRender();
@@ -364,7 +365,7 @@ var page = {
       }
     });
   },
-  // ¼ì²éÊÇ·ñÎªÍÅÌå·Ã¿ÍÉ¨Âë£¬
+  // æ£€æŸ¥æ˜¯å¦ä¸ºå›¢ä½“è®¿å®¢æ‰«ç ï¼Œ
   checkIsGroupScanQRCode: function () {
     if (term.redirect && (term.redirect.indexOf('api=groupQRCodeScan') >= 0 || util.getQueryString('api') == 'groupQRCodeScan')) {
       var url = window.location.search;
@@ -375,8 +376,8 @@ var page = {
       return false;
     }
   },
-  // ¼àÌıÇé¿ö£¬ÉóºËorÎ´ÉóºË£¬ÉóºËÍ¨¹ı eportal ºóÌ¨ÉÏÏß¡£
-  checkUserStatusAndLoginByIP: function (firstRender) {   // firstRender ÊÇ·ñÊ×´ÎäÖÈ¾Ò³Ãæ
+  // ç›‘å¬æƒ…å†µï¼Œå®¡æ ¸oræœªå®¡æ ¸ï¼Œå®¡æ ¸é€šè¿‡ eportal åå°ä¸Šçº¿ã€‚
+  checkUserStatusAndLoginByIP: function (firstRender) {   // firstRender æ˜¯å¦é¦–æ¬¡æ¸²æŸ“é¡µé¢
     var me = this;
     me.kind = term.type == 2 ? 'mobile_31' : 'pc_1';
     var callback = me.load_js_css;
@@ -396,7 +397,7 @@ var page = {
       },
       success: function (json) {
         if (json.result == 1 || json.result == 'ok') {
-          if (typeof (json.login_result) && json.login_result == 1 || json.login_result == 2) { // ÔÚÏß»òµÇÂ¼³É¹¦
+          if (typeof (json.login_result) && json.login_result == 1 || json.login_result == 2) { // åœ¨çº¿æˆ–ç™»å½•æˆåŠŸ
             me.timer && window.clearInterval(me.timer);
             window.location = '3.htm' + window.location.search;
             return;
@@ -404,22 +405,22 @@ var page = {
           if (!firstRender) return;
 
           if (typeof (json.useflag) != 'undefined') {
-            if (json.useflag == 0) { // Í£»ú
+            if (json.useflag == 0) { // åœæœº
               me.kind = term.type == 2 ? 'mobile_32' : 'pc_2';
               callback = function () {
-                document.getElementById('message').innerHTML = '¸ÃÕËºÅÒÑÍ£»ú£¬Çë³äÖµ¼¤»îºóÔÙÊ¹ÓÃ¡£';
+                document.getElementById('message').innerHTML = 'è¯¥è´¦å·å·²åœæœºï¼Œè¯·å……å€¼æ¿€æ´»åå†ä½¿ç”¨ã€‚';
                 document.getElementById('message').setAttribute('data-localize', 'accountoutofservice')
                 me.load_js_css();
               };
-            } else { // ÔÚÏßÎ´¿ª»§£¬ĞèÉóºË
-              if (json.auditstate == 0) { // ÒÑÌá½»£¬´ıÉóºË
+            } else { // åœ¨çº¿æœªå¼€æˆ·ï¼Œéœ€å®¡æ ¸
+              if (json.auditstate == 0) { // å·²æäº¤ï¼Œå¾…å®¡æ ¸
                 me.kind = term.type == 2 ? 'mobile_32' : 'pc_2';
                 callback = function () {
-                  document.getElementById('message').innerHTML = 'ÒÑÌá½»ÉóºË£¬ÇëÄÍĞÄµÈ´ı¶ÌĞÅÍ¨Öª£¡';
+                  document.getElementById('message').innerHTML = 'å·²æäº¤å®¡æ ¸ï¼Œè¯·è€å¿ƒç­‰å¾…çŸ­ä¿¡é€šçŸ¥ï¼';
                   document.getElementById('message').setAttribute('data-localize', 'submittedforreview')
                   me.load_js_css(me.keepCheckState);
                 };
-              } else { // -1 Î´Ìá½»ÉóºË
+              } else { // -1 æœªæäº¤å®¡æ ¸
                 me.kind = term.type == 2 ? 'mobile_eduroam' : 'pc_eduroam';
               }
             }
@@ -444,7 +445,7 @@ var page = {
     me.timer && window.clearInterval(me.timer);
     me.timer = window.setInterval(function () {
       page.checkUserStatusAndLoginByIP();
-    }, 8000); //Ã¿8Ãë×Ô¶¯Ë¢ĞÂÒ»´Î
+    }, 8000); //æ¯8ç§’è‡ªåŠ¨åˆ·æ–°ä¸€æ¬¡
   },
   firstRender: function () {
     var me = this;
@@ -454,7 +455,7 @@ var page = {
       me.render(me.load_js_css);
     }
   },
-  // ¹ã¸æÒ³
+  // å¹¿å‘Šé¡µ
   advert: function () {
     var me = this;
     me.kind = term.type == 2 ? 'mobile_79' : 'pc_79';
@@ -474,38 +475,38 @@ var page = {
     });
   },
   /*  
-   * ¼ÓÔØ Ò³ÃæĞèÒªµÄjs ¸úcss ÎÄ¼ş
+   * åŠ è½½ é¡µé¢éœ€è¦çš„js è·Ÿcss æ–‡ä»¶
    */
   load_js_css: function (callback) {
-    // Bootstrap ÔÚÒ³ÃæÖĞºÃÏñÃ»ÓĞÓÃµ½
+    // Bootstrap åœ¨é¡µé¢ä¸­å¥½åƒæ²¡æœ‰ç”¨åˆ°
     // util._load('css', page.page_asset + 'css/bootstrap.css'); // Bootstrap v3.2.0
-    // ÆäËûjsÒÀÀµ jquery,µÈjquery ¼ÓÔØÍê³ÉÔÙ¼ÓÔØÆäËûjs
-    // all.js °üÀ¨»ù±¾²»»á±ä¶¯µÄjs²å¼ş jquery FlexSlider jQuery-ajaxTransport-XDomainRequest clipboard store
+    // å…¶ä»–jsä¾èµ– jquery,ç­‰jquery åŠ è½½å®Œæˆå†åŠ è½½å…¶ä»–js
+    // all.js åŒ…æ‹¬åŸºæœ¬ä¸ä¼šå˜åŠ¨çš„jsæ’ä»¶ jquery FlexSlider jQuery-ajaxTransport-XDomainRequest clipboard store
     util._load('js', page.page_asset + 'js/all.js', function () {
       util._load('css', page.page_asset + 'js/layer/theme/default/layer.css?v=3.1.1');
-      util._load('js', page.page_asset + 'js/layer/layer.js'); // layer.js µ¯´°½â¾ö·½°¸ µ¥¶À¼ÓÔØ£¬ÒòÎªÒª×Ô¶¯¼ÓÔØ css ÎÄ¼ş
-      //ĞèÏÈ¼ÓÔØ(jquery.i18n.properties)£¬a42.jsÖĞÓĞÓÃµ½$.i18n
+      util._load('js', page.page_asset + 'js/layer/layer.js'); // layer.js å¼¹çª—è§£å†³æ–¹æ¡ˆ å•ç‹¬åŠ è½½ï¼Œå› ä¸ºè¦è‡ªåŠ¨åŠ è½½ css æ–‡ä»¶
+      //éœ€å…ˆåŠ è½½(jquery.i18n.properties)ï¼Œa42.jsä¸­æœ‰ç”¨åˆ°$.i18n
       util._load('js', page.page_asset + 'js/jquery.i18n.js', function () {
-        // ÅĞ¶ÏÊÇ²»ÊÇ·¢²¼µÄ·½°¸£¬·¢²¼µÄ»°£¬¶Ôjs ½øĞĞ´ò°üÑ¹Ëõ
+        // åˆ¤æ–­æ˜¯ä¸æ˜¯å‘å¸ƒçš„æ–¹æ¡ˆï¼Œå‘å¸ƒçš„è¯ï¼Œå¯¹js è¿›è¡Œæ‰“åŒ…å‹ç¼©
         if (isJSMin) {
-          util._load('js', 'http://raw.githack.com/GangChengHuang/Script-GUT-network-system-enhancer/main/a40.js'); // Ñ¹ËõºóµÄ¹¦ÄÜjs
+          util._load('js', 'http://raw.githack.com/GangChengHuang/Script-GUT-network-system-enhancer/main/a40.js'); // å‹ç¼©åçš„åŠŸèƒ½js
         } else {
-          util._load('js', 'a77.js?v=_' + fileVersion); // ä¯ÀÀÆ÷Ì½²âÖØ¶¨ÏòÁĞ±í
-          util._load('js', 'a78.js?v=_' + fileVersion); // ´íÎó×Ô¶¨Òå
+          util._load('js', 'a77.js?v=_' + fileVersion); // æµè§ˆå™¨æ¢æµ‹é‡å®šå‘åˆ—è¡¨
+          util._load('js', 'a78.js?v=_' + fileVersion); // é”™è¯¯è‡ªå®šä¹‰
 
           /**
-           * ÏÂÃæ¼¸¸ö°´Ë³Ğò¼ÓÔØ
-           * a42.js ĞèÏÈ¼ÓÔØ¹¤¾ßjs
-           * a43.js »ù±¾ÒµÎñ¹¦ÄÜ
-           * a44.js ÅÔÂ·ÈÏÖ¤
-           * a45.js ¶ÌĞÅÈÏÖ¤
-           * a47.js ¶şÎ¬ÂëÉ¨Âë¹¦ÄÜ
-           * a48.js ¶¤¶¤ÈÏÖ¤¹¦ÄÜ
-           * a49.js ·Ã¿Í
-           * a50.js ¹ã¸æÍ³¼Æ¹¦ÄÜ
-           * a51.js ÆÕ½Ì¹¦ÄÜ
-           * a58.js ¶¨ÖÆ¹¦ÄÜÊ¹ÓÃ£¬¸²¸Ç±ê×¼¹¦ÄÜ£¬ËùÒÔĞèÒªÔÚ±ê×¼¹¦ÄÜ¼ÓÔØºó¼ÓÔØ
-           * a59.js _init º¯Êı£¬×îºó¼ÓÔØ£¬×îºóÖ´ĞĞ
+           * ä¸‹é¢å‡ ä¸ªæŒ‰é¡ºåºåŠ è½½
+           * a42.js éœ€å…ˆåŠ è½½å·¥å…·js
+           * a43.js åŸºæœ¬ä¸šåŠ¡åŠŸèƒ½
+           * a44.js æ—è·¯è®¤è¯
+           * a45.js çŸ­ä¿¡è®¤è¯
+           * a47.js äºŒç»´ç æ‰«ç åŠŸèƒ½
+           * a48.js é’‰é’‰è®¤è¯åŠŸèƒ½
+           * a49.js è®¿å®¢
+           * a50.js å¹¿å‘Šç»Ÿè®¡åŠŸèƒ½
+           * a51.js æ™®æ•™åŠŸèƒ½
+           * a58.js å®šåˆ¶åŠŸèƒ½ä½¿ç”¨ï¼Œè¦†ç›–æ ‡å‡†åŠŸèƒ½ï¼Œæ‰€ä»¥éœ€è¦åœ¨æ ‡å‡†åŠŸèƒ½åŠ è½½ååŠ è½½
+           * a59.js _init å‡½æ•°ï¼Œæœ€ååŠ è½½ï¼Œæœ€åæ‰§è¡Œ
            */
           var jsFiles = ['a42.js', 'a43.js', 'a44.js', 'a45.js', 'a47.js', 'a48.js', 'a49.js', 'a50.js', 'a51.js', 'a58.js', 'a59.js'];
 
@@ -523,8 +524,8 @@ var page = {
     });
   },
   /*  
-   * äÖÈ¾Ò³Ãæ
-   * ½â¾öÍ¼Æ¬£¬ÊÓÆµÂ·¾¶ÎÊÌâ
+   * æ¸²æŸ“é¡µé¢
+   * è§£å†³å›¾ç‰‡ï¼Œè§†é¢‘è·¯å¾„é—®é¢˜
    */
   render: function (next) {
     var me = page;
@@ -546,22 +547,22 @@ var page = {
       newbtrelogin.name = "relogin";
       newbtrelogin.type = "button";
       newbtrelogin.setAttribute('onclick','javascript:wc()')
-      newbtrelogin.value = "ÖØĞÂÈÏÖ¤";
+      newbtrelogin.value = "é‡æ–°è®¤è¯";
       newbtrelogin.style.cssText = btLogged.style.cssText;
       newbtrelogin.style.left = "45%";
       newbtrelogin.style.right = "0";
       dom.getElementsByTagName('form')[0].appendChild(newbtrelogin);
 
-      // Ìæ»»Í¼Æ¬Â·¾¶
+      // æ›¿æ¢å›¾ç‰‡è·¯å¾„
       var imgs = dom.getElementsByTagName('img');
       for (var i = imgs.length - 1; i >= 0; i--) {
         var src = imgs[i].src;
         if (src && src.length > 0) {
           var index = src.indexOf('/', 10);
           if (index > 0) {
-            src = src.substr(index + 1); // È¥µô http://xxx²¿·Ö
+            src = src.substr(index + 1); // å»æ‰ http://xxxéƒ¨åˆ†
             var srcAry = src.split('/');
-            //EditEportal ¹«ÓÃÄ¿Â¼²»×öÒ³ÃæÎÄ¼şÌæ»»
+            //EditEportal å…¬ç”¨ç›®å½•ä¸åšé¡µé¢æ–‡ä»¶æ›¿æ¢
             if (srcAry[0] == 'EditEportal') {
               imgs[i].src = me.eportal + src;
             } else {
@@ -571,21 +572,21 @@ var page = {
         }
       }
 
-      //½â¾öÊÓÆµÂ·¾¶ÎÊÌâ
+      //è§£å†³è§†é¢‘è·¯å¾„é—®é¢˜
       var videos = dom.getElementsByTagName('video');
       for (var i = videos.length - 1; i >= 0; i--) {
         var src = videos[i].src;
         if (src && src.length > 0) {
           var index = src.indexOf('/', 10);
           if (index > 0) {
-            src = src.substr(index + 1); // È¥µô http://xxx²¿·Ö
+            src = src.substr(index + 1); // å»æ‰ http://xxxéƒ¨åˆ†
             var srcAry = src.split('/');
             videos[i].src = me.page_url + srcAry[srcAry.length - 1];
           }
         }
         videos[i].setAttribute('poster', me.eportal + 'EditEportal/Images/a03.jpg');
       }
-      // ½â¾ö°´Å¥±³¾°Í¼Æ¬Â·¾¶ÎÊÌâ
+      // è§£å†³æŒ‰é’®èƒŒæ™¯å›¾ç‰‡è·¯å¾„é—®é¢˜
       var changeBtnImgPath = function (targets) {
         for (var i = targets.length - 1; i >= 0; i--) {
           var style = targets[i].getAttribute('style');
@@ -602,7 +603,7 @@ var page = {
       changeBtnImgPath(dom.getElementsByTagName('button'));
       changeBtnImgPath(dom.getElementsByTagName('input'));
 
-      //¶ßµãÏÔÊ¾ÎÊÌâ
+      //å“†ç‚¹æ˜¾ç¤ºé—®é¢˜
       if ((typeof (duodianAppHidden) != 'undefined') && (duodianAppHidden == 1)) {
         var a = dom.getElementsByTagName('a');
         for (var i = a.length; i >= 0; i--) {
@@ -624,11 +625,11 @@ var page = {
       document.body.innerHTML = '';
       document.body.appendChild(dom);
 
-      // Ò³ÃæÀïÃæ·ÅÁËÒ»¸ö×Ö¶Î£¬Çø·ÖÒ³ÃæµÄÀàĞÍ£¬ĞèÒªÕë¶Ô²»Í¬ÀàĞÍµÄÒ³Ãæ×ö²»Í¬´¦Àí
-      // Ä¿Ç°ÔİÊ±ÓÃÕâ¸öÀ´ÅĞ¶ÏÒ³ÃæÊÇ·ñÎª·Ã¿ÍÄ£°å guest visitor eduroam ÈıÖÖ
+      // é¡µé¢é‡Œé¢æ”¾äº†ä¸€ä¸ªå­—æ®µï¼ŒåŒºåˆ†é¡µé¢çš„ç±»å‹ï¼Œéœ€è¦é’ˆå¯¹ä¸åŒç±»å‹çš„é¡µé¢åšä¸åŒå¤„ç†
+      // ç›®å‰æš‚æ—¶ç”¨è¿™ä¸ªæ¥åˆ¤æ–­é¡µé¢æ˜¯å¦ä¸ºè®¿å®¢æ¨¡æ¿ guest visitor eduroam ä¸‰ç§
       document.getElementById("pagetype") && (me.vtype = document.getElementById("pagetype").value);
 
-      // äÖÈ¾Íê³Éºó ×öÒ»Ğ©³õÊ¼»¯²Ù×÷ ÒÔ¼°µ÷ÓÃ»Øµ÷º¯Êı
+      // æ¸²æŸ“å®Œæˆå åšä¸€äº›åˆå§‹åŒ–æ“ä½œ ä»¥åŠè°ƒç”¨å›è°ƒå‡½æ•°
       if (typeof (_init) != 'undefined') {
         if (($('[name="language"]').length > 0) || (store.get("i18n_lang") == "en")) {
           language.init(null, function () {
@@ -645,7 +646,7 @@ var page = {
 }
 var util = {
   num: 1000,
-  //×ÔÔö,ÓÃÓÚjsonpÇëÇó»Øµ÷º¯Êı
+  //è‡ªå¢,ç”¨äºjsonpè¯·æ±‚å›è°ƒå‡½æ•°
   increment: function () {
     return ++this.num;
   },
@@ -680,28 +681,28 @@ var util = {
       return '';
     }
   },
-  getTermType: function () { // ·ÃÎÊÉè±¸:0-ÆäËû£»1-PC£»2-ÊÖ»ú£»3-Æ½°å
+  getTermType: function () { // è®¿é—®è®¾å¤‡:0-å…¶ä»–ï¼›1-PCï¼›2-æ‰‹æœºï¼›3-å¹³æ¿
     var iTermType = 0;
-    if (navigator.userAgent.indexOf('Android') > 0) { // °²×¿
+    if (navigator.userAgent.indexOf('Android') > 0) { // å®‰å“
       iTermType = navigator.userAgent.indexOf('PAD for Mobile') > 0 ? 3 : 2;
-    } else if (navigator.userAgent.indexOf('BlackBerry') > 0) { // À¶İ®
+    } else if (navigator.userAgent.indexOf('BlackBerry') > 0) { // è“è“
       iTermType = navigator.userAgent.indexOf('RIM Table OS') > 0 ? 3 : 2;
-    } else if (navigator.userAgent.indexOf('Mac OS') > 0) { // Æ»¹û
+    } else if (navigator.userAgent.indexOf('Mac OS') > 0) { // è‹¹æœ
       iTermType = navigator.userAgent.indexOf('iPad') > 0 ? 3 : (navigator.userAgent.indexOf('iPhone') > 0 ? 2 : 1);
     } else if (navigator.userAgent.indexOf('X11') > 0) { // Linux
       iTermType = 1;
-    } else if (navigator.userAgent.indexOf('SymbOS') > 0) { // Èû°à
+    } else if (navigator.userAgent.indexOf('SymbOS') > 0) { // å¡ç­
       iTermType = 2;
     } else if (navigator.userAgent.indexOf('Windows') > 0) { // Windows
       iTermType = navigator.userAgent.indexOf('Windows RT') > 0 ? 3 : (navigator.userAgent.indexOf('Windows Phone') > 0 ? 2 : 1);
     } else {
       iTermType = 2;
     }
-    //UAÊ¶±ğ³ÉPCÊ±£¬ä¯ÀÀÆ÷ÏÔÊ¾¿í¶ÈĞ¡ÓÚ¸ß¶ÈÔò¼ÓÔØÊÖ»úÒ³
+    //UAè¯†åˆ«æˆPCæ—¶ï¼Œæµè§ˆå™¨æ˜¾ç¤ºå®½åº¦å°äºé«˜åº¦åˆ™åŠ è½½æ‰‹æœºé¡µ
     if (iTermType == 1 && window.screen.width < window.screen.height) {
       iTermType = 2;
     }
-    //UAÊ¶±ğ³ÉÆ½°åÊ±£¬ä¯ÀÀÆ÷ÏÔÊ¾¿í¶ÈĞ¡ÓÚÒ³Ãæ¹Ì¶¨¿í¶È´óĞ¡1200Ôò¼ÓÔØÊÖ»úÒ³
+    //UAè¯†åˆ«æˆå¹³æ¿æ—¶ï¼Œæµè§ˆå™¨æ˜¾ç¤ºå®½åº¦å°äºé¡µé¢å›ºå®šå®½åº¦å¤§å°1200åˆ™åŠ è½½æ‰‹æœºé¡µ
     if (iTermType == 3 && window.screen.width < 1200) {
       iTermType = 2;
     }
@@ -710,7 +711,7 @@ var util = {
   _jsonp: function (params) {
     var me = this;
     var lang = store.get("i18n_lang") == "en" ? "en" : "zh";
-    //¸ñÊ½»¯²ÎÊı  
+    //æ ¼å¼åŒ–å‚æ•°  
     var formatParams = function (data) {
       var arr = [];
       for (var name in data) {
@@ -720,13 +721,13 @@ var util = {
           arr.push(encodeURIComponent(name) + '=' + encodeURIComponent(data[name]));
         }
       };
-      // Ìí¼ÓÒ»¸öËæ»úÊı£¬·ÀÖ¹»º´æ
+      // æ·»åŠ ä¸€ä¸ªéšæœºæ•°ï¼Œé˜²æ­¢ç¼“å­˜
       arr.push('v=' + random());
-      // Ìí¼ÓÖĞÓ¢ÎÄ±êÊ¶
+      // æ·»åŠ ä¸­è‹±æ–‡æ ‡è¯†
       arr.push('lang=' + lang);
       return arr.join('&');
     };
-    // »ñÈ¡Ëæ»úÊı  
+    // è·å–éšæœºæ•°  
     var random = function () {
       return Math.floor(Math.random() * 10000 + 500);
     };
@@ -734,33 +735,33 @@ var util = {
     params = params || {};
     params.data = params.data || {};
 
-    // jsonpÇëÇó
-    //´´½¨script±êÇ©²¢¼ÓÈëµ½Ò³ÃæÖĞ
-    var callbackName = 'dr' + me.increment(); // ×Ô¶¨Òå callbackName
+    // jsonpè¯·æ±‚
+    //åˆ›å»ºscriptæ ‡ç­¾å¹¶åŠ å…¥åˆ°é¡µé¢ä¸­
+    var callbackName = 'dr' + me.increment(); // è‡ªå®šä¹‰ callbackName
     var head = document.getElementsByTagName('head')[0];
-    // ÉèÖÃ´«µİ¸øºóÌ¨µÄ»Øµ÷²ÎÊıÃû
+    // è®¾ç½®ä¼ é€’ç»™åå°çš„å›è°ƒå‚æ•°å
     params.data['callback'] = callbackName;
-    // Ä¬ÈÏ´øÉÏ jsVersion  
+    // é»˜è®¤å¸¦ä¸Š jsVersion  
     params.data['jsVersion'] = jsVersion;
     var data = formatParams(params.data);
     var script = document.createElement('script');
     head.appendChild(script);
-    //´´½¨jsonp»Øµ÷º¯Êı
+    //åˆ›å»ºjsonpå›è°ƒå‡½æ•°
     window[callbackName] = function (json) {
       head.removeChild(script);
       clearTimeout(script.timer);
       window[callbackName] = null;
       params.success && params.success(json);
     };
-    //·¢ËÍÇëÇó  
+    //å‘é€è¯·æ±‚  
     script.src = params.url + (params.url.indexOf('?') > 0 ? '&' : '?') + data;
-    //ÎªÁËµÃÖª´Ë´ÎÇëÇóÊÇ·ñ³É¹¦£¬ÉèÖÃ³¬Ê±´¦Àí  
+    //ä¸ºäº†å¾—çŸ¥æ­¤æ¬¡è¯·æ±‚æ˜¯å¦æˆåŠŸï¼Œè®¾ç½®è¶…æ—¶å¤„ç†  
     if (params.time) {
       script.timer = setTimeout(function () {
         window[callbackName] = null;
         head.removeChild(script);
         params.error && params.error({
-          message: '³¬Ê±'
+          message: 'è¶…æ—¶'
         });
       }, params.time);
     }
@@ -791,7 +792,7 @@ var util = {
       };
     }
   },
-  //½«16½øÖÆIP×ªÎªµã·ÖÊ®½øÖÆ´®
+  //å°†16è¿›åˆ¶IPè½¬ä¸ºç‚¹åˆ†åè¿›åˆ¶ä¸²
   hex16ToString: function (hex16IP) {
     var stringIP = parseInt(hex16IP.substr(0, 2), 16).toString(10) + "." + parseInt(hex16IP.substr(2, 2), 16).toString(10) + "." + parseInt(hex16IP.substr(4, 2), 16).toString(10) + "." + parseInt(hex16IP.substr(6, 2), 16).toString(10);
     return stringIP;
@@ -801,7 +802,7 @@ var term = {
   account: '',
   password: '',
   type: 2,
-  // ·ÃÎÊÉè±¸:0-ÆäËû£»1-PC£»2-ÊÖ»ú£»3-Æ½°å
+  // è®¿é—®è®¾å¤‡:0-å…¶ä»–ï¼›1-PCï¼›2-æ‰‹æœºï¼›3-å¹³æ¿
   ip: '000.000.000.000',
   ipv6: '',
   mac: '000000000000',
@@ -816,14 +817,14 @@ var term = {
   online: {},
   redirect: '',
   suffix: '',
-  //wifidogÆ¥Åä²ÎÊı
-  gw_id: '',  		//gw_id ÓÃÓÚÇø±ğwifidogÉè±¸
-  gw_address: '',	//wifidogµÄIP
-  gw_port: '',		//wifidogµÄ¶Ë¿Ú
-  gw_token: '',	//ÓÃ»§¼ìÑétoken
+  //wifidogåŒ¹é…å‚æ•°
+  gw_id: '',  		//gw_id ç”¨äºåŒºåˆ«wifidogè®¾å¤‡
+  gw_address: '',	//wifidogçš„IP
+  gw_port: '',		//wifidogçš„ç«¯å£
+  gw_token: '',	//ç”¨æˆ·æ£€éªŒtoken
 
   /*  
-   * ÉèÖÃÖÕ¶ËÏà¹ØµÄ²ÎÊı
+   * è®¾ç½®ç»ˆç«¯ç›¸å…³çš„å‚æ•°
    */
   init: function (next) {
     this.type = util.getTermType();
@@ -844,7 +845,7 @@ var term = {
     this.gw_port = util.getQueryString('gw_port') || '';
     this.gw_token = util.getQueryString('token') || '';
     var me = this;
-    // eduroam ÉóºËÒ³ÊÇa27.htm Ö±½Ó¶Á²»µ½ip£¬Í¨¹ıcheckstatus ½Ó¿Ú»ñÈ¡
+    // eduroam å®¡æ ¸é¡µæ˜¯a27.htm ç›´æ¥è¯»ä¸åˆ°ipï¼Œé€šè¿‡checkstatus æ¥å£è·å–
     if (page._kind == 'eduroam' || page._kind == 27) {
       var url = page.path + 'chkstatus';
       util._jsonp({
