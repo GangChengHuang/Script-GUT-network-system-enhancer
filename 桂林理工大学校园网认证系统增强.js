@@ -1,22 +1,55 @@
 // ==UserScript==
-// @name         桂林理工大学校园网认证系统增强
+// @name         桂林理工大学校园网认证系统增强&&支持移动端、iOS、PC
 // @namespace    https://github.com/GangChengHuang
-// @version      1.3
+// @version      1.4
 // @description  桂林理工大学校园网认证信息不够全面，故开发此插件！自动认证，界面美化，屏蔽学校官网转跳，多账号自动认证，显示全面的认证信息。
 // @author       Peterg
-// @match        http://172.16.2.2/*
+// @include      *://172.16.2.2/*
 // @icon         https://cas.glut.edu.cn/favicon.ico
 // @run-at       document-body
 // @grant        GM_setValue
+// @grant        GM.setValue
 // @grant        GM_getValue
-// @grant        GM_registerMenuCommand
-// @grant        GM_addStyle
+// @grant        GM.getValue
 // @license      GPL3.0
 // ==/UserScript==
 (function () {
+	//共有方法，全局共享
+	function commonFunction() {
+		this.GMgetValue = function (name, value = null) {
+			let storageValue = value;
+			if (typeof GM_getValue === "function") {
+				storageValue = GM_getValue(name, value);
+			} else if (typeof GM.setValue === "function") {
+				storageValue = GM.getValue(name, value);
+			} else {
+				var arr = window.localStorage.getItem(name);
+				if (arr != null) {
+					storageValue = arr;
+				}
+			}
+			return storageValue;
+		};
+		this.GMsetValue = function (name, value) {
+			if (typeof GM_setValue === "function") {
+				GM_setValue(name, value);
+			} else if (typeof GM.setValue === "function") {
+				GM.setValue(name, value);
+			} else {
+				window.localStorage.setItem(name, value);
+			}
+		};
+		this.GMaddStyle = function (css) {
+			var myStyle = document.createElement('style');
+			myStyle.textContent = css;
+			var doc = document.head || document.documentElement;
+			doc.appendChild(myStyle);
+		};
+	}
+	//全局统一方法对象
+	const commonFunctionObject = new commonFunction();
 
-	// 添加样式
-	GM_addStyle(`
+	const cssText = `
 	#floating-window {
 		position: fixed;
 		top: 50%;
@@ -171,13 +204,15 @@
 	.tilink img {
 		width: 15%;
 	}
-`);
+`;
+	commonFunctionObject.GMaddStyle(cssText);	//统一html、css元素添加
+	// 添加样式
 
-	var loginInfo = GM_getValue('loginInfo', '');
+	var loginInfo = commonFunctionObject.GMgetValue('loginInfo', '');
 	var loginInfoJson = "";
 
 	if (isJSON(loginInfo)) {
-		loginInfoJson = JSON.parse(loginInfo).as
+		loginInfoJson = JSON.parse(loginInfo).as;
 	} else {
 
 	}
@@ -195,7 +230,7 @@
 				return false;
 			}
 		}
-		console.log('It is not a string!')
+		console.log('It is not a string!');
 		return false;
 	}
 
@@ -213,15 +248,15 @@
 	}
 
 	function showLoggedInfo() {
-		var str = "认证信息为：<br/>"
-		if (GM_getValue("account", false)) str += `工号/学号/账号：${term.account}<br/>`
-		if (GM_getValue("ipaddress", false)) str += `IPv4地址：${term.ip}<br/>`
-		if (GM_getValue("macaddress", false)) str += `MAC地址：${term.mac.toUpperCase()}<br/>`
-		if (GM_getValue("devicetype", false)) str += `设备类型：${["其他", "PC", "手机", "平板"][term.type]}<br/>`
-		if (GM_getValue("accountname", false)) str += `账号名称：${NID}<br/>`
-		if (GM_getValue("logintime", false)) str += `认证时间：${stime}<br/>`
-		if (GM_getValue("logouttime", false)) str += `过期时间：${etime}<br/>`
-		if (GM_getValue("usedflow", false)) str += `已用流量：${flow1 / 1024 + flow3 + flow0 / 1024}MByte<br/>`
+		var str = "认证信息为：<br/>";
+		if (commonFunctionObject.GMgetValue("account", false)) str += `工号/学号/账号：${term.account}<br/>`;
+		if (commonFunctionObject.GMgetValue("ipaddress", false)) str += `IPv4地址：${term.ip}<br/>`;
+		if (commonFunctionObject.GMgetValue("macaddress", false)) str += `MAC地址：${term.mac.toUpperCase()}<br/>`;
+		if (commonFunctionObject.GMgetValue("devicetype", false)) str += `设备类型：${["其他", "PC", "手机", "平板"][term.type]}<br/>`;
+		if (commonFunctionObject.GMgetValue("accountname", false)) str += `账号名称：${NID}<br/>`;
+		if (commonFunctionObject.GMgetValue("logintime", false)) str += `认证时间：${stime}<br/>`;
+		if (commonFunctionObject.GMgetValue("logouttime", false)) str += `过期时间：${etime}<br/>`;
+		if (commonFunctionObject.GMgetValue("usedflow", false)) str += `已用流量：${flow1 / 1024 + flow3 + flow0 / 1024}MByte<br/>`;
 		var loginBox = document.querySelector("#edit_body > div:nth-child(2) > div.edit_loginBox.ui-resizable-autohide");
 		var loginBox2 = document.querySelector("#edit_body > div:nth-child(2) > div.edit_loginBox.ui-resizable-autohide > form > div");
 		if (str == "认证信息为：<br/>") {
@@ -312,7 +347,7 @@
 	var fixbackground = false;
 	var addBtReLogin = false;
 	function fixLoggedLayout() {
-		if (GM_getValue('addrelogin', false)) {
+		if (commonFunctionObject.GMgetValue('addrelogin', false)) {
 			var btLogged = document.querySelector(
 				"#edit_body > div:nth-child(2) > div.edit_loginBox.ui-resizable-autohide > form > input"
 			);
@@ -363,7 +398,7 @@
 			imglogo.src = "https://cas.glut.edu.cn/portal/image/showImage/logo/1";
 			imglogo.style.width = "100%";
 		}
-		if (GM_getValue('fixbg', false)) {
+		if (commonFunctionObject.GMgetValue('fixbg', false)) {
 			var info = document.querySelector(
 				"#edit_body > div:nth-child(2) > div.edit_loginBox.ui-resizable-autohide > form > div"
 			);
@@ -374,7 +409,7 @@
 			if (bordbg && bordbg.style.backgroundColor != "rgb(255, 255, 255)")
 				bordbg.style.backgroundColor = "rgb(255, 255, 255)";
 			if (!fixbackground) {
-				var bgurl = GM_getValue('bgurl', null);
+				var bgurl = commonFunctionObject.GMgetValue('bgurl', null);
 				if (bgurl) {
 					document.querySelector(
 						"body"
@@ -388,7 +423,7 @@
 			document.querySelector("body").style.background = "";
 			//if (imglogo) imglogo.style.opacity = 1;
 		}
-		if (GM_getValue('addlinks', '')) {
+		if (commonFunctionObject.GMgetValue('addlinks', '')) {
 			addlinks();
 		} else {
 			var hotlinks = document.getElementById('hotlinks');
@@ -429,7 +464,7 @@
 				});
 			}
 		} else {
-			if (!GM_getValue('loginInfo', '')) {
+			if (!commonFunctionObject.GMgetValue('loginInfo', '')) {
 				document.getElementById('minimized-icon').click();
 				_alert(lang("请填写账号信息！"));
 				return;
@@ -467,7 +502,7 @@
 		try {
 			var backups_login_checkForm = login.checkForm;
 			login.checkForm = function (form) {
-				if (form.DDDDD.value == GM_getValue('command', '')) {
+				if (form.DDDDD.value == commonFunctionObject.GMgetValue('command', '')) {
 					autoCheckLogin();
 					return false;
 				} else {
@@ -536,7 +571,6 @@
 	}
 
 	// 创建菜单项
-	//GM_registerMenuCommand('设置', openCustomMenu);
 
 	function createCheckbox(labelText, value, todoFun) {
 		var checkboxContainer = document.createElement('div');
@@ -544,9 +578,9 @@
 		floatingWindowCheckbox.classList.add('floating-window-checkbox');
 		floatingWindowCheckbox.type = "checkbox";
 		floatingWindowCheckbox.id = value;
-		floatingWindowCheckbox.checked = GM_getValue(value, false);
+		floatingWindowCheckbox.checked = commonFunctionObject.GMgetValue(value, false);
 		floatingWindowCheckbox.addEventListener('change', function () {
-			GM_setValue(value, floatingWindowCheckbox.checked);
+			commonFunctionObject.GMsetValue(value, floatingWindowCheckbox.checked);
 			todoFun();
 		});
 		checkboxContainer.appendChild(floatingWindowCheckbox);
@@ -598,9 +632,9 @@
 		var floatingWindowInput = document.createElement('input');
 		floatingWindowInput.classList.add('floating-window-input');
 		floatingWindowInput.type = "text";
-		floatingWindowInput.value = GM_getValue('command', '');
+		floatingWindowInput.value = commonFunctionObject.GMgetValue('command', '');
 		floatingWindowInput.addEventListener('input', function () {
-			GM_setValue('command', floatingWindowInput.value);
+			commonFunctionObject.GMsetValue('command', floatingWindowInput.value);
 		});
 		floatingWindowInputP.appendChild(floatingWindowInput);
 
@@ -659,9 +693,9 @@
 		var floatingWindowInput2 = document.createElement('input');
 		floatingWindowInput2.classList.add('floating-window-input');
 		floatingWindowInput2.type = "text";
-		floatingWindowInput2.value = GM_getValue('bgurl', '');
+		floatingWindowInput2.value = commonFunctionObject.GMgetValue('bgurl', '');
 		floatingWindowInput2.addEventListener('input', function () {
-			GM_setValue('bgurl', floatingWindowInput2.value);
+			commonFunctionObject.GMsetValue('bgurl', floatingWindowInput2.value);
 		});
 		floatingWindowInputP2.appendChild(floatingWindowInput2);
 
@@ -672,9 +706,9 @@
 		var floatingWindowTextarea = document.createElement('textarea');
 		floatingWindowTextarea.classList.add('floating-window-textarea');
 		floatingWindowTextarea.placeholder = `JSON格式\n例如：{"as":[{"a":"123","p":"123","t":1},{"a":"456","p":"456","t":2}]}\na为账号、p为密码、t为运营商\n注：运营商0-校园网，1-电信，2-移动，3-联通`;
-		floatingWindowTextarea.value = GM_getValue('loginInfo', '');
+		floatingWindowTextarea.value = commonFunctionObject.GMgetValue('loginInfo', '');
 		floatingWindowTextarea.addEventListener('input', function () {
-			GM_setValue('loginInfo', floatingWindowTextarea.value);
+			commonFunctionObject.GMsetValue('loginInfo', floatingWindowTextarea.value);
 		});
 		floatingWindowTextareaP.appendChild(floatingWindowTextarea);
 
@@ -682,7 +716,7 @@
 
 		// 创建页脚
 		var footer = document.createElement('div');
-		footer.style = "text-align: center;font-size: 1em;"
+		footer.style = "text-align: center;font-size: 1em;";
 		footer.innerHTML = 'Powered by <a href="https://github.com/GangChengHuang">PeterG</a>';
 		floatingWindowContent.appendChild(footer);
 
@@ -879,7 +913,7 @@
 					return;
 				}
 				return _alert_(msg);
-			}
+			};
 		} catch (error) {
 		}
 	}
@@ -893,7 +927,7 @@
 				replaceLink();
 				fixLayout();
 				addMinimizeIcon();
-				if (!document.getElementById('hotlinks') && GM_getValue('addlinks', '')) {
+				if (!document.getElementById('hotlinks') && commonFunctionObject.GMgetValue('addlinks', '')) {
 					addlinks();
 				}
 				hook_alert();
